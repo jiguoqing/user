@@ -1,7 +1,7 @@
 package com.shiji.service;
 
 /**
- * Created by jiguoqing on 2018/8/8.
+ * Created by jiguoqing on 2019/05/12.
  */
 public interface UserService {
 

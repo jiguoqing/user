@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by jiguoqing on 2018/8/8.
+ * Created by jiguoqing on 2019/05/12.
  */
 @RestController
 @RequestMapping(value="/mybatis", produces = "application/json; charset=UTF-8")
