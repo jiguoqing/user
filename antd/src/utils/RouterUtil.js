@@ -7,9 +7,9 @@ import * as StringUtil from './StringUtil';
  * @returns {boolean}
  */
 export function isUrl(url) {
-    if (StringUtil.isBlank(url)) return false;
-    var reg = /(^(http|ftp|https|file):\/\/([\w\-]+\.)+[\w\-]+(\/[\w\u4e00-\u9fa5\-\.\/?\@\%\!\&=\+\~\:\#\;\,]*)?)/ig;
-    return reg.test(url);
+  if (StringUtil.isBlank(url)) return false;
+  var reg = /(^(http|ftp|https|file):\/\/([\w\-]+\.)+[\w\-]+(\/[\w\u4e00-\u9fa5\-\.\/?\@\%\!\&=\+\~\:\#\;\,]*)?)/ig;
+  return reg.test(url);
 }
 
 /**
@@ -30,52 +30,6 @@ export function hasPathName(location, checkedPathName) {
 export function isCheckIndex(location) {
   return hasPathName(location, "/check/index");
 }
-
-/**
- * 是否为业务域首页
- * @param location
- * @returns {boolean}
- */
-export function isCheckDomain(location) {
-  return hasPathName(location, "/check/domain");
-}
-
-/**
- * 是否为灰度首页
- *
- * @param location
- * @returns {boolean}
- */
-export function isGrayIndex(location) {
-  return hasPathName(location, "/gray/index");
-}
-
-/**
- * 是否为灰度业务场景
- *
- * @param location
- * @returns {boolean}
- */
-export function isGrayDomain(location) {
-  return hasPathName(location, "/gray/domain");
-}
-
-/**
- * 变更管控 - 变更总览
- * @param location
- */
-export function isRiskCtrlIndex(location) {
-  return hasPathName(location, "/riskctrl/index");
-}
-
-/**
- * 变更管控 - 生产变更
- * @param location
- */
-export function isRiskCtrlProduct(location) {
-  return hasPathName(location, "/riskctrl/product");
-}
-
 /**
  * 获取查询参数字符串列表, 形式为: a=1&b=2
  * @param location

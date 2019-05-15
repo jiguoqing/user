@@ -1,19 +1,13 @@
 
 import * as OptionsHelper from './helpers/OptionsHelper.js';
 import * as ResponseHelper from './helpers/ResponseHelper.js';
-import * as RequestHelper from './helpers/RequestHelper.js';
 
 import $ from 'jquery';
-/**
- * 设置默认请求编码
- */
-$.ajaxSetup(RequestHelper.OVERRIDE_GLOBAL_OPTIONS);
-
 
 /**
- * 保存风险场景
+ * 保存
  *
- * @param Employee    风险场景
+ * @param Employee    
  * @param options 请求配置
  */
 export function save(Employee, options) {
@@ -22,11 +16,11 @@ export function save(Employee, options) {
     url: "/available/manager/Employee/save.json",
     method: "POST",
     data: {
-      id: Employee.id,                            // 风险场景编号(编辑状态有值)
-      triggerPoint: Employee.triggerPoint,                        // 风险场景表达式
+      id: Employee.id,                            // 编号(编辑状态有值)
+      triggerPoint: Employee.triggerPoint,                        // 表达式
       description: Employee.description,          // 措施描述
 
-      name: Employee.name,                        // 风险场景名称
+      name: Employee.name,                        // 名称
 
     },
     success: function (resp) {
@@ -43,9 +37,9 @@ export function save(Employee, options) {
 
 
 /**
- * 分页查询风险场景
+ * 分页查询
  *
- * @param pageSize    每页显示风险场景条数
+ * @param pageSize    每页显示条数
  * @param currentPage    单前页
  * @param options 请求配置
  */
@@ -73,9 +67,9 @@ export function findByPage(pageSize, currentPage, formData, options) {
   });
 }
 /**
- * 查询风险场景详情
+ * 查询详情
  *
- * @param id  风险场景编号
+ * @param id  编号
  * @param options 请求配置
  */
 export function findById(id, options) {
@@ -99,9 +93,9 @@ export function findById(id, options) {
 }
 
 /**
- * 删除风险场景
+ * 删除
  *
- * @param id  风险场景编号
+ * @param id  编号
  * @param options 请求配置
  */
 export function deleteById(id, options) {
@@ -135,11 +129,11 @@ export function deleteById(id, options) {
  * @param options 请求配置
  * @returns {*}
  */
-export function findRelateByPageModel(appId, pageSize, currentPage, formData, exclude, targetType, options) {
+export function findEmployees(appId, pageSize, currentPage, formData, exclude, targetType, options) {
 
   options = OptionsHelper.generate(options);
   return $.ajax({
-    url: "/available/manager/Employee/findEmployeeByPageModel.json",
+    url: "/employee/findEmployees.json",
     method: "POST",
     data: {
       page_size: pageSize,
