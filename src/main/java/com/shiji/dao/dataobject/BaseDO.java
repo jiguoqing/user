@@ -9,7 +9,7 @@ public class BaseDO implements Serializable {
 
   private Date createAt;
 
-  private Date updataAt;
+  private Date updateAt;
 
   public Integer getId() {
     return id;
@@ -27,11 +27,11 @@ public class BaseDO implements Serializable {
     this.createAt = createAt;
   }
 
-  public Date getUpdataAt() {
-    return updataAt;
+  public Date getUpdateAt() {
+    return updateAt;
   }
 
-  public void setUpdataAt(Date updataAt) {
-    this.updataAt = updataAt;
+  public void setUpdateAt(Date updateAt) {
+    this.updateAt = updateAt;
   }
 }

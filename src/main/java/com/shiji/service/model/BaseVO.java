@@ -8,7 +8,7 @@ public class BaseVO {
 
   private Date createAt;
 
-  private Date updataAt;
+  private Date updateAt;
 
   public Integer getId() {
     return id;
@@ -26,11 +26,11 @@ public class BaseVO {
     this.createAt = createAt;
   }
 
-  public Date getUpdataAt() {
-    return updataAt;
+  public Date getUpdateAt() {
+    return updateAt;
   }
 
-  public void setUpdataAt(Date updataAt) {
-    this.updataAt = updataAt;
+  public void setUpdateAt(Date updateAt) {
+    this.updateAt = updateAt;
   }
 }

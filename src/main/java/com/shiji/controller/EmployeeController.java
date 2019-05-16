@@ -1,6 +1,5 @@
 package com.shiji.controller;
 
-import com.shiji.dao.UserMapper;
 import com.shiji.service.EmployeeService;
 import com.shiji.service.model.EmployeeVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +19,11 @@ public class EmployeeController {
 
   @Autowired
   private EmployeeService employeeService;
-  @Autowired
-  private UserMapper userMapperDao;
 
   @GetMapping("/employee/findByCondition")
-  public List<EmployeeVO> findAll(@RequestParam String page,@RequestParam String pageSize) {
+  public List<EmployeeVO> findAll(@RequestParam String page, @RequestParam String pageSize) {
 
     List<EmployeeVO> employees = employeeService.findAll();
-
-    return  employees;
+    return employees;
   }
 }

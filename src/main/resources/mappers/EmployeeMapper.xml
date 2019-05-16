@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.shiji.dao.EmployeeMapper" >
-    <!--<typeAlias alias="Employee" type="com.shiji.dao.dataobject.EmployeeDO" />-->
-
-    <!--<resultMap id="employee" class="Employee">-->
-        <!--<result property="id" column="id" />-->
-        <!--<result property="createAt" column="create_at" />-->
-        <!--<result property="updateAt" column="update_at" />-->
-        <!--<result property="name" column="name" />-->
-        <!--<result property="domainAccount" column="domain_account" />-->
-        <!--<result property="domainAccount" column="domain_account" />-->
-    <!--</resultMap>-->
-
+    <!--<typeAliases>-->
+        <!--<typeAlias alias="Employee" type="com.shiji.dao.dataobject.EmployeeDO"/>-->
+    <!--</typeAliases>-->
+    <resultMap id="Employee" type="com.shiji.dao.dataobject.EmployeeDO">
+        <result property="id" column="id" />
+        <result property="createAt" column="create_at" />
+        <result property="updateAt" column="update_at" />
+        <result property="name" column="name" />
+        <result property="age" column="age" />
+        <result property="job" column="job" />
+        <result property="department" column="department" />
+        <result property="email" column="email" />
+        <result property="phone" column="phone" />
+    </resultMap>
 
     <!--<insert id="insert" parameterClass="Employee">-->
         <!--insert into employee(-->
@@ -37,7 +40,7 @@
         <!--select * from employee where  id=#id#-->
     <!--</select>-->
 
-    <select id="findAll" parameterType="java.lang.String" resultType="com.shiji.dao.dataobject.EmployeeDO">
+    <select id="findAll" parameterType="java.lang.String" resultMap="Employee">
         select * from employee
     </select>
 
