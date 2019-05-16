@@ -17,6 +17,15 @@ public class EmployeeVO extends BaseVO {
   private String phone;
   private Date onboardAt;
 
+  private String description;
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
   public String getName() {
     return name;
   }

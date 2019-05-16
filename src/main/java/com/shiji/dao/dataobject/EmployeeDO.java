@@ -13,9 +13,18 @@ public class EmployeeDO extends BaseDO {
   private String jobTitle;
   private String gender;
   private String location;
-  private Integer age;
   private String email;
   private String phone;
+  private String description;
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
 
   public String getName() {
     return name;
@@ -71,14 +80,6 @@ public class EmployeeDO extends BaseDO {
 
   public void setLocation(String location) {
     this.location = location;
-  }
-
-  public Integer getAge() {
-    return age;
-  }
-
-  public void setAge(Integer age) {
-    this.age = age;
   }
 
   public String getEmail() {
