@@ -9,11 +9,14 @@
         <result property="createAt" column="create_at" />
         <result property="updateAt" column="update_at" />
         <result property="name" column="name" />
-        <result property="age" column="age" />
-        <result property="job" column="job" />
+        <result property="code" column="code" />
         <result property="department" column="department" />
+        <result property="jobTitle" column="job_title" />
+        <result property="gender" column="gender" />
+        <result property="location" column="location" />
         <result property="email" column="email" />
         <result property="phone" column="phone" />
+        <result property="onboardAt" column="onboard_at" />
     </resultMap>
 
     <!--<insert id="insert" parameterClass="Employee">-->
