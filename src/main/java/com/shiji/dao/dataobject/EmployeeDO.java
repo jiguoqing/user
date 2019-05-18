@@ -16,6 +16,15 @@ public class EmployeeDO extends BaseDO {
   private String email;
   private String phone;
   private String description;
+  private Date onboardAt;
+
+  public Date getOnboardAt() {
+    return onboardAt;
+  }
+
+  public void setOnboardAt(Date onboardAt) {
+    this.onboardAt = onboardAt;
+  }
 
   public String getDescription() {
     return description;
@@ -24,7 +33,6 @@ public class EmployeeDO extends BaseDO {
   public void setDescription(String description) {
     this.description = description;
   }
-
 
   public String getName() {
     return name;
@@ -97,14 +105,4 @@ public class EmployeeDO extends BaseDO {
   public void setPhone(String phone) {
     this.phone = phone;
   }
-
-  public Date getOnboardAt() {
-    return onboardAt;
-  }
-
-  public void setOnboardAt(Date onboardAt) {
-    this.onboardAt = onboardAt;
-  }
-
-  private Date onboardAt;
 }

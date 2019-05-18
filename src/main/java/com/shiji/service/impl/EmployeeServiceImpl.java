@@ -24,4 +24,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     List<EmployeeDO> employeeDOS = employeeMapper.findAll();
     return ConvertUtil.convertToVOList(employeeDOS, EmployeeVO.class);
   }
+
+  @Override
+  public void save(EmployeeVO employee) {
+    if (null == employee.getId()) {
+      employeeMapper.insert(employee);
+    } else {
+      employeeMapper.update(employee);
+    }
+  }
 }

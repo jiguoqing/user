@@ -21,21 +21,39 @@
         <result property="onboardAt" column="onboard_at" />
     </resultMap>
 
-    <!--<insert id="insert" parameterClass="Employee">-->
-        <!--insert into employee(-->
-        <!--domain_account,-->
-        <!--gmt_create,-->
-        <!--gmt_modified-->
-        <!--)-->
-        <!--values(-->
-        <!--#domainAccount#,-->
-        <!--now(),-->
-        <!--now()-->
-        <!--)-->
-        <!--<selectKey resultClass="int" keyProperty="id">-->
-            <!--select last_insert_id() as id-->
-        <!--</selectKey>-->
-    <!--</insert>-->
+    <insert id="insert" parameterType="com.shiji.dao.dataobject.EmployeeDO">
+        insert into employee(
+        create_at,
+        update_at,
+        onboard_at,
+        name,
+        english_name,
+        code,
+        department,
+        job_title,
+        location,
+        email,
+        phone,
+        description
+        )
+        values(
+        now(),
+        now(),
+        #{onboardAt},
+        #{name},
+        #{englishName},
+        #{code},
+        #{department},
+        #{jobTitle},
+        #{location},
+        #{email},
+        #{phone},
+        #{description}
+        )
+        <selectKey resultType="int" keyProperty="id">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
 
     <!--<delete id="deleteById" parameterClass="java.lang.Integer">-->
         <!--delete from employee where id=#id#-->
@@ -45,7 +63,7 @@
         <!--select * from employee where  id=#id#-->
     <!--</select>-->
 
-    <select id="findAll" parameterType="java.lang.String" resultMap="Employee">
+    <select id="findAll" resultMap="Employee">
         select * from employee
     </select>
 
