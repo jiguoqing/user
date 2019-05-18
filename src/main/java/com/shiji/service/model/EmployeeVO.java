@@ -12,7 +12,6 @@ public class EmployeeVO extends BaseVO {
   private String jobTitle;
   private String gender;
   private String location;
-  private Integer age;
   private String email;
   private String phone;
   private Date onboardAt;
@@ -80,14 +79,6 @@ public class EmployeeVO extends BaseVO {
 
   public void setLocation(String location) {
     this.location = location;
-  }
-
-  public Integer getAge() {
-    return age;
-  }
-
-  public void setAge(Integer age) {
-    this.age = age;
   }
 
   public String getEmail() {
