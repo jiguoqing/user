@@ -12,4 +12,6 @@ public interface EmployeeService {
   List<EmployeeVO> findAll();
 
   void save(EmployeeVO employee);
+
+  void deleteById(Integer id);
 }

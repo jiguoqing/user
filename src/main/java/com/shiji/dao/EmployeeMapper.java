@@ -14,4 +14,6 @@ public interface EmployeeMapper {
   void insert(EmployeeVO employee);
 
   void update(EmployeeVO employee);
+
+  void deleteById(Integer id);
 }

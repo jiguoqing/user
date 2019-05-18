@@ -74,9 +74,9 @@
         description = #{description}
         WHERE id = #{id};
     </update>
-    <!--<delete id="deleteById" parameterClass="java.lang.Integer">-->
-        <!--delete from employee where id=#id#-->
-    <!--</delete>-->
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from employee where id=#{id}
+    </delete>
 
     <!--<select id="findById" parameterClass="java.lang.Integer" resultMap="Employee">-->
         <!--select * from employee where  id=#id#-->

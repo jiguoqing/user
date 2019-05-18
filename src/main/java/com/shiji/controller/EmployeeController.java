@@ -24,7 +24,7 @@ public class EmployeeController {
   private EmployeeService employeeService;
 
   @GetMapping("/employee/findByCondition")
-  public List<EmployeeVO> findAll(@RequestParam String page, @RequestParam String pageSize) {
+  public List<EmployeeVO> findAll(@RequestParam String page) {
 
     List<EmployeeVO> employees = employeeService.findAll();
     return employees;
@@ -33,5 +33,9 @@ public class EmployeeController {
   @PostMapping("/employee/save")
   public void save(@RequestBody EmployeeVO employee) {
     employeeService.save(employee);
+  }
+  @PostMapping("/employee/deleteById")
+  public void deleteById(@RequestParam Integer id) {
+    employeeService.deleteById(id);
   }
 }
