@@ -22,7 +22,7 @@
     </resultMap>
 
     <insert id="insert" parameterType="com.shiji.dao.dataobject.EmployeeDO">
-        insert into employee(
+        INSERT INTO employee(
         create_at,
         update_at,
         onboard_at,
@@ -37,7 +37,7 @@
         phone,
         description
         )
-        values(
+        VALUES(
         now(),
         now(),
         #{onboardAt},
@@ -57,6 +57,23 @@
         </selectKey>
     </insert>
 
+    <update id="update" parameterType="com.shiji.dao.dataobject.EmployeeDO">
+        UPDATE employee
+        SET
+        update_at = now(),
+        onboard_at = #{onboardAt},
+        name = #{name},
+        english_name = #{englishName},
+        gender = #{gender},
+        code = #{code},
+        department = #{department},
+        job_title = #{jobTitle},
+        location = #{location},
+        email = #{email},
+        phone = #{phone},
+        description = #{description}
+        WHERE id = #{id};
+    </update>
     <!--<delete id="deleteById" parameterClass="java.lang.Integer">-->
         <!--delete from employee where id=#id#-->
     <!--</delete>-->
