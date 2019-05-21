@@ -15,6 +15,33 @@ public class EmployeeVO extends BaseVO {
   private String email;
   private String phone;
   private Date onboardAt;
+  private Date leavedAt;
+  private String level;
+  private String status;
+
+  public Date getLeavedAt() {
+    return leavedAt;
+  }
+
+  public void setLeavedAt(Date leavedAt) {
+    this.leavedAt = leavedAt;
+  }
+
+  public String getLevel() {
+    return level;
+  }
+
+  public void setLevel(String level) {
+    this.level = level;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
 
   private String description;
 

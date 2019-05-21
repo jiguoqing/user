@@ -17,7 +17,33 @@ public class EmployeeDO extends BaseDO {
   private String phone;
   private String description;
   private Date onboardAt;
+  private Date leavedAt;
+  private String level;
+  private String status;
 
+  public Date getLeavedAt() {
+    return leavedAt;
+  }
+
+  public void setLeavedAt(Date leavedAt) {
+    this.leavedAt = leavedAt;
+  }
+
+  public String getLevel() {
+    return level;
+  }
+
+  public void setLevel(String level) {
+    this.level = level;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public void setStatus(String status) {
+    this.status = status;
+  }
   public Date getOnboardAt() {
     return onboardAt;
   }

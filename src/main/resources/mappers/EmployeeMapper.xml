@@ -19,6 +19,9 @@
         <result property="phone" column="phone" />
         <result property="description" column="description" />
         <result property="onboardAt" column="onboard_at" />
+        <result property="leavedAt" column="leaved_at" />
+        <result property="level" column="level" />
+        <result property="status" column="status" />
     </resultMap>
 
     <insert id="insert" parameterType="com.shiji.dao.dataobject.EmployeeDO">
@@ -35,7 +38,10 @@
         location,
         email,
         phone,
-        description
+        description,
+        leaved_at,
+        level,
+        status
         )
         VALUES(
         now(),
@@ -50,7 +56,10 @@
         #{location},
         #{email},
         #{phone},
-        #{description}
+        #{description},
+        #{leavedAt},
+        #{level},
+        #{status}
         )
         <selectKey resultType="int" keyProperty="id">
             select last_insert_id() as id
@@ -71,6 +80,9 @@
         location = #{location},
         email = #{email},
         phone = #{phone},
+        leaved_at = #{leavedAt},
+        level = #{level},
+        status = #{status},
         description = #{description}
         WHERE id = #{id};
     </update>
