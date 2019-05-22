@@ -1,7 +1,9 @@
 package com.shiji.service.model;
 
 import java.util.Date;
-
+/**
+ * Created by 计国清 on 2019/05/22.
+ */
 public class EmployeeVO extends BaseVO {
 
   private static final long serialVersionUID = 1L;

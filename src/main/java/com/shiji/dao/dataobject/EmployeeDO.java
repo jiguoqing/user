@@ -1,7 +1,9 @@
 package com.shiji.dao.dataobject;
 
 import java.util.Date;
-
+/**
+ * Created by 计国清 on 2019/05/12.
+ */
 public class EmployeeDO extends BaseDO {
 
   private static final long serialVersionUID = 1L;

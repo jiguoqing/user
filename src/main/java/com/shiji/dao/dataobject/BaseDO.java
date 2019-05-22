@@ -3,13 +3,15 @@ package com.shiji.dao.dataobject;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * Created by 计国清 on 2019/05/12.
+ */
 public class BaseDO implements Serializable {
   private static final long serialVersionUID = 1L;
   private Integer id;
+  private Date createdAt;
 
-  private Date createAt;
-
-  private Date updateAt;
+  private Date updatedAt;
 
   public Integer getId() {
     return id;
@@ -19,19 +21,19 @@ public class BaseDO implements Serializable {
     this.id = id;
   }
 
-  public Date getCreateAt() {
-    return createAt;
+  public Date getCreatedAt() {
+    return createdAt;
   }
 
-  public void setCreateAt(Date createAt) {
-    this.createAt = createAt;
+  public void setCreatedAt(Date createdAt) {
+    this.createdAt = createdAt;
   }
 
-  public Date getUpdateAt() {
-    return updateAt;
+  public Date getUpdatedAt() {
+    return updatedAt;
   }
 
-  public void setUpdateAt(Date updateAt) {
-    this.updateAt = updateAt;
+  public void setUpdatedAt(Date updatedAt) {
+    this.updatedAt = updatedAt;
   }
 }

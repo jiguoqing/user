@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiji.dao.DepartmentMapper" >
+
+    <resultMap id="Department" type="com.shiji.dao.dataobject.DepartmentDO">
+        <result property="id" column="id" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
+        <result property="name" column="name" />
+        <result property="englishName" column="english_name" />
+        <result property="code" column="code" />
+        <result property="department" column="department" />
+        <result property="jobTitle" column="job_title" />
+        <result property="gender" column="gender" />
+        <result property="location" column="location" />
+        <result property="email" column="email" />
+        <result property="phone" column="phone" />
+        <result property="description" column="description" />
+        <result property="onboardAt" column="onboard_at" />
+        <result property="leavedAt" column="leaved_at" />
+        <result property="level" column="level" />
+        <result property="status" column="status" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.shiji.dao.dataobject.DepartmentDO">
+        INSERT INTO department(
+        created_at,
+        updated_at,
+        name,
+        owner,
+        description
+        )
+        VALUES(
+        now(),
+        now(),
+        #{name},
+        #{owner},
+        #{description}
+        )
+        <selectKey resultType="int" keyProperty="id">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
+
+    <update id="update" parameterType="com.shiji.dao.dataobject.DepartmentDO">
+        UPDATE department
+        SET
+        updated_at = now(),
+        name = #{name},
+        owner = #{owner},
+        description = #{description}
+        WHERE id = #{id};
+    </update>
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from department where id=#{id}
+    </delete>
+
+    <select id="findAll" resultMap="Department">
+        select * from department
+    </select>
+
+</mapper>

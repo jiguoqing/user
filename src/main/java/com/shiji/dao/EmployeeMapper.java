@@ -6,7 +6,7 @@ import com.shiji.service.model.EmployeeVO;
 import java.util.List;
 
 /**
- * Created by jiguoqing on 2019/05/12.
+ * Created by 计国清 on 2019/05/12.
  */
 public interface EmployeeMapper {
   List<EmployeeDO> findAll();

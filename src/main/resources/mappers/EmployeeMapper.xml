@@ -6,8 +6,8 @@
     <!--</typeAliases>-->
     <resultMap id="Employee" type="com.shiji.dao.dataobject.EmployeeDO">
         <result property="id" column="id" />
-        <result property="createAt" column="create_at" />
-        <result property="updateAt" column="update_at" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updatedAt" />
         <result property="name" column="name" />
         <result property="englishName" column="english_name" />
         <result property="code" column="code" />
@@ -26,8 +26,8 @@
 
     <insert id="insert" parameterType="com.shiji.dao.dataobject.EmployeeDO">
         INSERT INTO employee(
-        create_at,
-        update_at,
+        created_at,
+        updatedAt,
         onboard_at,
         name,
         english_name,
@@ -69,7 +69,7 @@
     <update id="update" parameterType="com.shiji.dao.dataobject.EmployeeDO">
         UPDATE employee
         SET
-        update_at = now(),
+        updatedAt = now(),
         onboard_at = #{onboardAt},
         name = #{name},
         english_name = #{englishName},
