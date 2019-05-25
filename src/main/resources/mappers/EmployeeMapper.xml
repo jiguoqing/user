@@ -7,11 +7,11 @@
     <resultMap id="Employee" type="com.shiji.dao.dataobject.EmployeeDO">
         <result property="id" column="id" />
         <result property="createdAt" column="created_at" />
-        <result property="updatedAt" column="updatedAt" />
+        <result property="updatedAt" column="updated_at" />
         <result property="name" column="name" />
         <result property="englishName" column="english_name" />
         <result property="code" column="code" />
-        <result property="department" column="department" />
+        <result property="departmentId" column="department_id" />
         <result property="jobTitle" column="job_title" />
         <result property="gender" column="gender" />
         <result property="location" column="location" />
@@ -27,13 +27,13 @@
     <insert id="insert" parameterType="com.shiji.dao.dataobject.EmployeeDO">
         INSERT INTO employee(
         created_at,
-        updatedAt,
+        updated_at,
         onboard_at,
         name,
         english_name,
         gender,
         code,
-        department,
+        department_id,
         job_title,
         location,
         email,
@@ -51,7 +51,7 @@
         #{englishName},
         #{gender},
         #{code},
-        #{department},
+        #{departmentId},
         #{jobTitle},
         #{location},
         #{email},
@@ -75,7 +75,7 @@
         english_name = #{englishName},
         gender = #{gender},
         code = #{code},
-        department = #{department},
+        department_id = #{departmentId},
         job_title = #{jobTitle},
         location = #{location},
         email = #{email},

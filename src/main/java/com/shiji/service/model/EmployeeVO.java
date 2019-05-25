@@ -10,7 +10,7 @@ public class EmployeeVO extends BaseVO {
   private String name;
   private String englishName;
   private String code;
-  private String department;
+  private Integer departmentId;
   private String jobTitle;
   private String gender;
   private String location;
@@ -78,12 +78,12 @@ public class EmployeeVO extends BaseVO {
     this.code = code;
   }
 
-  public String getDepartment() {
-    return department;
+  public Integer getDepartmentId() {
+    return departmentId;
   }
 
-  public void setDepartment(String department) {
-    this.department = department;
+  public void setDepartmentId(Integer departmentId) {
+    this.departmentId = departmentId;
   }
 
   public String getJobTitle() {
