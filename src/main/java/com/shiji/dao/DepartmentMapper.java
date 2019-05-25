@@ -16,4 +16,6 @@ public interface DepartmentMapper {
   void update(DepartmentVO department);
 
   void deleteById(Integer id);
+
+  List<DepartmentDO> findByName(String name);
 }

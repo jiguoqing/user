@@ -38,4 +38,10 @@ public class DepartmentServiceImpl implements DepartmentService {
   public void deleteById(Integer id) {
     departmentMapper.deleteById(id);
   }
+
+  @Override
+  public List<DepartmentVO>  findByName(String name) {
+    List<DepartmentDO> departmentDOS =departmentMapper.findByName(name);
+    return ConvertUtil.convertToVOList(departmentDOS, DepartmentVO.class);
+  }
 }

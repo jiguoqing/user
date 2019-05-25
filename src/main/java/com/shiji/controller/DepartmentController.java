@@ -36,6 +36,11 @@ public class DepartmentController {
     departmentService.save(department);
   }
 
+  @GetMapping("/department/findByName")
+  public List<DepartmentVO> findByName(@RequestParam String name) {
+    List<DepartmentVO> departments = departmentService.findByName(name);
+    return  departments;
+  }
   @PostMapping("/department/deleteById")
   public void deleteById(@RequestParam Integer id) {
     departmentService.deleteById(id);

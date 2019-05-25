@@ -14,4 +14,6 @@ public interface DepartmentService {
   void save(DepartmentVO department);
 
   void deleteById(Integer id);
+
+  List<DepartmentVO> findByName(String name);
 }
