@@ -1,5 +1,6 @@
 package com.shiji.service.impl;
 
+import com.shiji.common.Constans;
 import com.shiji.common.ConvertUtil;
 import com.shiji.dao.EmployeeMapper;
 import com.shiji.dao.dataobject.EmployeeDO;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by jiguoqing on 2019/05/12.
@@ -37,5 +39,21 @@ public class EmployeeServiceImpl implements EmployeeService {
   @Override
   public void deleteById(Integer id) {
     employeeMapper.deleteById(id);
+  }
+
+  @Override
+  public List<EmployeeVO> findByCondition(Map<String, Object> condition) {
+    Integer fromRow =
+        (Integer.parseInt(condition.get("currentPage").toString()) - 1) * Constans.pageSize;
+    condition.put("fromRow", fromRow);
+    condition.put("toRow", fromRow + Constans.pageSize);
+
+    List<EmployeeDO> employeeDOS = employeeMapper.findByCondition(condition);
+    return ConvertUtil.convertToVOList(employeeDOS, EmployeeVO.class);
+  }
+
+  @Override
+  public Integer countByCondition(Map<String, Object> condition) {
+    return employeeMapper.countByCondition(condition);
   }
 }
