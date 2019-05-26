@@ -11,6 +11,7 @@ public class EmployeeVO extends BaseVO {
   private String englishName;
   private String code;
   private Integer departmentId;
+  private DepartmentVO department;
   private String jobTitle;
   private String gender;
   private String location;
@@ -20,6 +21,14 @@ public class EmployeeVO extends BaseVO {
   private Date leavedAt;
   private String level;
   private String status;
+
+  public DepartmentVO getDepartment() {
+    return department;
+  }
+
+  public void setDepartment(DepartmentVO department) {
+    this.department = department;
+  }
 
   public Date getLeavedAt() {
     return leavedAt;

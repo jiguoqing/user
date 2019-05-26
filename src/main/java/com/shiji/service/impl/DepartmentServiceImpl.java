@@ -7,8 +7,11 @@ import com.shiji.service.DepartmentService;
 import com.shiji.service.model.DepartmentVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by jiguoqing on 2019/05/12.
@@ -40,8 +43,23 @@ public class DepartmentServiceImpl implements DepartmentService {
   }
 
   @Override
-  public List<DepartmentVO>  findByName(String name) {
-    List<DepartmentDO> departmentDOS =departmentMapper.findByName(name);
+  public List<DepartmentVO> findByName(String name) {
+    List<DepartmentDO> departmentDOS = departmentMapper.findByName(name);
     return ConvertUtil.convertToVOList(departmentDOS, DepartmentVO.class);
+  }
+
+  @Override
+  public Map<Integer, DepartmentVO> findByIds(List<Integer> ids) {
+
+    List<DepartmentDO> departmentDOS = departmentMapper.findByIds(ids);
+    Map<Integer, DepartmentVO> result = new HashMap<>();
+    if (CollectionUtils.isEmpty(departmentDOS)) {
+      return result;
+    }
+    for (DepartmentDO departmentDO : departmentDOS) {
+      result.put(departmentDO.getId(), ConvertUtil.convertToVO(departmentDO, DepartmentVO.class));
+    }
+
+    return result;
   }
 }

@@ -18,4 +18,6 @@ public interface DepartmentMapper {
   void deleteById(Integer id);
 
   List<DepartmentDO> findByName(String name);
+
+  List<DepartmentDO> findByIds(List<Integer> ids);
 }
