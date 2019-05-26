@@ -28,11 +28,11 @@
             <if test="id != null">
                 id = #{id}
             </if>
-            <if test="groupIds != null">
-                and group_id in
-                <foreach collection="groupIds" item="groupId"
+            <if test="statuses != null">
+                and status in
+                <foreach collection="statuses" item="status"
                          index="index" open="(" close=")" separator=",">
-                    #{groupId}
+                    #{status}
                 </foreach>
             </if>
             <if test="name !=null">
@@ -110,7 +110,7 @@
     <update id="update" parameterType="com.shiji.dao.dataobject.EmployeeDO">
         UPDATE employee
         SET
-        updatedAt = now(),
+        updated_at = now(),
         onboard_at = #{onboardAt},
         name = #{name},
         english_name = #{englishName},

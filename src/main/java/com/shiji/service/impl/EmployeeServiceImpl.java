@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -55,6 +56,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     condition.put("fromRow", fromRow);
     condition.put("toRow", fromRow + Constans.pageSize);
 
+    if(null != condition.get("statuses")){
+      condition.put("statuses", Arrays.asList(condition.get("statuses").toString().split(",")));
+    }
     List<EmployeeDO> employeeDOS = employeeMapper.findByCondition(condition);
     List<EmployeeVO> employeeVOS = new ArrayList<>();
     if (CollectionUtils.isEmpty(employeeDOS)) {
@@ -75,6 +79,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
   @Override
   public Integer countByCondition(Map<String, Object> condition) {
+    if(null != condition.get("statuses")){
+      condition.put("statuses", Arrays.asList(condition.get("statuses").toString().split(",")));
+    }
     return employeeMapper.countByCondition(condition);
   }
 }
