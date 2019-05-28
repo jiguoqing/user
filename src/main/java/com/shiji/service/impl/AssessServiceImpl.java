@@ -37,7 +37,7 @@ public class AssessServiceImpl implements AssessService {
     AssessDO assessDO = new AssessDO();
     assessDO.setEmployeeId(employeeId);
     assessDO.setPhase(phase);
-//    assessMapper.delete(assessDO);
+    assessMapper.delete(assessDO);
     //insert new assess data
     Set<String> sets =  assessMap.keySet();
 
@@ -55,6 +55,7 @@ public class AssessServiceImpl implements AssessService {
       Map<String,Integer> map = (Map) assessMap.get(set);
       assess.setPercent(map.get("percent"));
       assess.setScore(map.get("score"));
+      assessMapper.insert(assess);
       System.out.print(assess);
     }
   }

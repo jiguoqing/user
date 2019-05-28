@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiji.dao.AssessMapper" >
+    <!--<typeAliases>-->
+        <!--<typeAlias alias="AssessResult" type="com.shiji.dao.dataobject.AssessDO"/>-->
+    <!--</typeAliases>-->
+    <resultMap id="AssessResult" type="com.shiji.dao.dataobject.AssessDO">
+        <result property="id" column="id" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
+        <result property="phase" column="phase" />
+        <result property="employeeId" column="employee_id" />
+        <result property="score" column="score" />
+        <result property="percent" column="percent" />
+        <result property="type" column="type" />
+        <result property="description" column="description" />
+    </resultMap>
+    <sql id="whereCondition">
+        <where>
+            <if test="id != null">
+                id = #{id}
+            </if>
+        </where>
+    </sql>
+
+    <insert id="insert" parameterType="com.shiji.dao.dataobject.AssessDO">
+        INSERT INTO assess(
+        created_at,
+        updated_at,
+        phase,
+        employee_id,
+        score,
+        percent,
+        type,
+        description
+        )
+        VALUES(
+        now(),
+        now(),
+        #{phase},
+        #{employeeId},
+        #{score},
+        #{percent},
+        #{type},
+        #{description}
+        )
+        <selectKey resultType="int" keyProperty="id">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
+
+    <delete id="delete" parameterType="com.shiji.dao.dataobject.AssessDO">
+        delete from assess where employee_id=#{employeeId} and  phase=#{phase}
+    </delete>
+
+    <select id="findByCondition" parameterType="java.util.Map"
+            resultMap="AssessResult">
+        select * from assess
+        <include refid="whereCondition" />
+        <choose>
+            <when test="order != null">
+                order by ${order}
+                ${orderType}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        limit #{fromRow},#{toRow}
+    </select>
+    <select id="countByCondition" parameterType="java.util.Map"
+            resultType="java.lang.Integer">
+        select count(*) from assess
+        <include refid="whereCondition" />
+    </select>
+
+
+</mapper>

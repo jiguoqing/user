@@ -11,7 +11,7 @@ public class AssessDO extends BaseDO {
   private Integer score;
   private Integer percent;
   private String type;
-  private String decription;
+  private String description;
 
   public String getPhase() {
     return phase;
@@ -53,11 +53,11 @@ public class AssessDO extends BaseDO {
     this.type = type;
   }
 
-  public String getDecription() {
-    return decription;
+  public String getDescription() {
+    return description;
   }
 
-  public void setDecription(String decription) {
-    this.decription = decription;
+  public void setDescription(String description) {
+    this.description = description;
   }
 }
