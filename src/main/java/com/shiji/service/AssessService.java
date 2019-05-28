@@ -12,8 +12,5 @@ public interface AssessService {
 
   List<AssessVO> findByEmployeeId(Integer employeeId);
 
-  void save(AssessVO assess);
-
-  void deleteById(Integer id);
-
+  void save(Map<String, Object> assess);
 }

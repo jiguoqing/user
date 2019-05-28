@@ -16,5 +16,5 @@ public interface AssessMapper {
 
   void update(AssessVO assess);
 
-  void deleteById(Integer id);
+  void delete(AssessDO assessDO);
 }
