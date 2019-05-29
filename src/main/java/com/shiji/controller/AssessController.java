@@ -22,6 +22,5 @@ public class AssessController {
   @PostMapping("/assess/save")
   public void save(@RequestBody Map<String, Object> assess) {
     assessService.save(assess);
-    System.out.print(assess);
   }
 }

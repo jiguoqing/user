@@ -4,6 +4,7 @@ import com.shiji.common.ConvertUtil;
 import com.shiji.dao.AssessMapper;
 import com.shiji.dao.dataobject.AssessDO;
 import com.shiji.service.AssessService;
+import com.shiji.service.EmployeeService;
 import com.shiji.service.model.AssessVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,9 @@ public class AssessServiceImpl implements AssessService {
 
   @Autowired
   private AssessMapper assessMapper;
+
+  @Autowired
+  private EmployeeService employeeService;
 
   @Override
   public List<AssessVO> findByEmployeeId(Integer employeeId) {
@@ -56,7 +60,9 @@ public class AssessServiceImpl implements AssessService {
       assess.setPercent(map.get("percent"));
       assess.setScore(map.get("score"));
       assessMapper.insert(assess);
-      System.out.print(assess);
+      //
+
     }
+    employeeService.updataAssessPhaseById(phase,employeeId);
   }
 }

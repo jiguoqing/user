@@ -21,6 +21,15 @@ public class EmployeeVO extends BaseVO {
   private Date leavedAt;
   private String level;
   private String status;
+  private String assessPhase;
+
+  public String getAssessPhase() {
+    return assessPhase;
+  }
+
+  public void setAssessPhase(String assessPhase) {
+    this.assessPhase = assessPhase;
+  }
 
   public DepartmentVO getDepartment() {
     return department;

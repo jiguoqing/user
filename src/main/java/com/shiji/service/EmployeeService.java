@@ -19,4 +19,8 @@ public interface EmployeeService {
   List<EmployeeVO> findByCondition(Map<String, Object> condition);
 
   Integer countByCondition(Map<String, Object> condition);
+
+  EmployeeVO findById(Integer id);
+
+  void updataAssessPhaseById(String phase, Integer employeeId);
 }

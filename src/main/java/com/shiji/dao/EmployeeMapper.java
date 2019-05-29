@@ -21,4 +21,8 @@ public interface EmployeeMapper {
   List<EmployeeDO> findByCondition(Map<String, Object> condition);
 
   Integer countByCondition(Map<String, Object> condition);
+
+  EmployeeDO findById(Integer id);
+
+  void updataAssessPhaseById(EmployeeDO employeeDO);
 }

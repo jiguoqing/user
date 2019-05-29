@@ -1,6 +1,7 @@
 package com.shiji.dao.dataobject;
 
 import java.util.Date;
+
 /**
  * Created by 计国清 on 2019/05/12.
  */
@@ -22,6 +23,15 @@ public class EmployeeDO extends BaseDO {
   private Date leavedAt;
   private String level;
   private String status;
+  private String assessPhase;
+
+  public String getAssessPhase() {
+    return assessPhase;
+  }
+
+  public void setAssessPhase(String assessPhase) {
+    this.assessPhase = assessPhase;
+  }
 
   public Date getLeavedAt() {
     return leavedAt;
@@ -46,6 +56,7 @@ public class EmployeeDO extends BaseDO {
   public void setStatus(String status) {
     this.status = status;
   }
+
   public Date getOnboardAt() {
     return onboardAt;
   }

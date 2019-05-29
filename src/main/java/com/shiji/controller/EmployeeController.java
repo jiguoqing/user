@@ -30,6 +30,11 @@ public class EmployeeController {
     return employees;
   }
 
+  @GetMapping("/employee/findById")
+  public EmployeeVO findById(@RequestParam Integer id) {
+    return employeeService.findById(id);
+  }
+
   @GetMapping("/employee/countByCondition")
   public Integer countByCondition(@RequestParam Map<String, Object> condition) {
     return employeeService.countByCondition(condition);

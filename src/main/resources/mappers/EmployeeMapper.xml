@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.shiji.dao.EmployeeMapper" >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiji.dao.EmployeeMapper">
     <!--<typeAliases>-->
-        <!--<typeAlias alias="EmployeeResult" type="com.shiji.dao.dataobject.EmployeeDO"/>-->
+    <!--<typeAlias alias="EmployeeResult" type="com.shiji.dao.dataobject.EmployeeDO"/>-->
     <!--</typeAliases>-->
     <resultMap id="EmployeeResult" type="com.shiji.dao.dataobject.EmployeeDO">
-        <result property="id" column="id" />
-        <result property="createdAt" column="created_at" />
-        <result property="updatedAt" column="updated_at" />
-        <result property="name" column="name" />
-        <result property="englishName" column="english_name" />
-        <result property="code" column="code" />
-        <result property="departmentId" column="department_id" />
-        <result property="jobTitle" column="job_title" />
-        <result property="gender" column="gender" />
-        <result property="location" column="location" />
-        <result property="email" column="email" />
-        <result property="phone" column="phone" />
-        <result property="description" column="description" />
-        <result property="onboardAt" column="onboard_at" />
-        <result property="leavedAt" column="leaved_at" />
-        <result property="level" column="level" />
-        <result property="status" column="status" />
+        <result property="id" column="id"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+        <result property="name" column="name"/>
+        <result property="englishName" column="english_name"/>
+        <result property="code" column="code"/>
+        <result property="departmentId" column="department_id"/>
+        <result property="jobTitle" column="job_title"/>
+        <result property="gender" column="gender"/>
+        <result property="location" column="location"/>
+        <result property="email" column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="description" column="description"/>
+        <result property="onboardAt" column="onboard_at"/>
+        <result property="leavedAt" column="leaved_at"/>
+        <result property="level" column="level"/>
+        <result property="status" column="status"/>
+        <result property="assessPhase" column="assess_phase"/>
+
     </resultMap>
     <sql id="whereCondition">
         <where>
             <if test="id != null">
                 id = #{id}
+            </if>
+            <if test="assessPhase != null">
+                assess_phase = #{assessPhase}
             </if>
             <if test="statuses != null">
                 and status in
@@ -82,7 +88,8 @@
         description,
         leaved_at,
         level,
-        status
+        status,
+        assess_phase
         )
         VALUES(
         now(),
@@ -100,12 +107,21 @@
         #{description},
         #{leavedAt},
         #{level},
-        #{status}
+        #{status},
+        #{assessPhase}
         )
         <selectKey resultType="int" keyProperty="id">
             select last_insert_id() as id
         </selectKey>
     </insert>
+
+    <update id="updataAssessPhaseById" parameterType="com.shiji.dao.dataobject.EmployeeDO">
+        UPDATE employee
+        SET
+        updated_at = now(),
+        assess_phase = #{assessPhase}
+        WHERE id = #{id};
+    </update>
 
     <update id="update" parameterType="com.shiji.dao.dataobject.EmployeeDO">
         UPDATE employee
@@ -124,6 +140,7 @@
         leaved_at = #{leavedAt},
         level = #{level},
         status = #{status},
+        assess_phase = #{assessPhase},
         description = #{description}
         WHERE id = #{id};
     </update>
@@ -134,7 +151,7 @@
     <select id="findByCondition" parameterType="java.util.Map"
             resultMap="EmployeeResult">
         select * from employee
-        <include refid="whereCondition" />
+        <include refid="whereCondition"/>
         <choose>
             <when test="order != null">
                 order by ${order}
@@ -149,11 +166,15 @@
     <select id="countByCondition" parameterType="java.util.Map"
             resultType="java.lang.Integer">
         select count(*) from employee
-        <include refid="whereCondition" />
+        <include refid="whereCondition"/>
     </select>
 
     <select id="findAll" resultMap="EmployeeResult">
         select * from employee
+    </select>
+    <select id="findById" parameterType="java.lang.Integer"
+            resultMap="EmployeeResult">
+        select * from employee where id = #{id}
     </select>
 
 </mapper>
