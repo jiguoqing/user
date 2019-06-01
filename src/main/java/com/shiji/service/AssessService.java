@@ -13,4 +13,6 @@ public interface AssessService {
   List<AssessVO> findByEmployeeId(Integer employeeId);
 
   void save(Map<String, Object> assess);
+
+  Map<Integer, String> findPhase(List<Integer> employeeIds);
 }

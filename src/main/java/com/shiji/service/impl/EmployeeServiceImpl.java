@@ -4,6 +4,7 @@ import com.shiji.common.Constans;
 import com.shiji.common.ConvertUtil;
 import com.shiji.dao.EmployeeMapper;
 import com.shiji.dao.dataobject.EmployeeDO;
+import com.shiji.service.AssessService;
 import com.shiji.service.DepartmentService;
 import com.shiji.service.EmployeeService;
 import com.shiji.service.model.DepartmentVO;
@@ -28,6 +29,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
   @Autowired
   private DepartmentService departmentService;
+  @Autowired
+  private AssessService assessService;
 
   @Override
   public List<EmployeeVO> findAll() {
@@ -65,14 +68,32 @@ public class EmployeeServiceImpl implements EmployeeService {
       return employeeVOS;
     }
     List<Integer> ids = new ArrayList<>();
+    List<Integer> departmentIds = new ArrayList<>();
 
     for (EmployeeDO employeeDO : employeeDOS) {
-      ids.add(employeeDO.getDepartmentId());
+      if (!departmentIds.contains(employeeDO.getDepartmentId())) {
+        departmentIds.add(employeeDO.getDepartmentId());
+      }
+      ids.add(employeeDO.getId());
       employeeVOS.add(ConvertUtil.convertToVO(employeeDO, EmployeeVO.class));
     }
-    Map<Integer, DepartmentVO> departmentVOMap = departmentService.findByIds(ids);
+    Map<Integer, String> mapPhase = assessService.findPhase(ids);
+    //    Map<Integer,String> assessResult = new HashMap<>();
+    //    Map<Integer,List<AssessVO>> mapAssessList = new HashMap<>();
+    //    List<AssessVO> assessVOS = assessService.findByIds(ids);
+    //    for(AssessVO assess:assessVOS){
+    //        if(CollectionUtils.isEmpty(mapAssessList.get(assess.getEmployeeId()))){
+    //
+    //            mapAssessList.put(assess.getEmployeeId(),new Arrays.to(assess));
+    //        }
+    //
+    //    }
+    Map<Integer, DepartmentVO> departmentVOMap = departmentService.findByIds(departmentIds);
     for (EmployeeVO employee : employeeVOS) {
       employee.setDepartment(departmentVOMap.get(employee.getDepartmentId()));
+      if(null !=mapPhase){
+        employee.setAssessPhase(mapPhase.get(employee.getId()));
+      }
     }
     return employeeVOS;
   }

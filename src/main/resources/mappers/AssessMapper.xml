@@ -74,5 +74,12 @@
         <include refid="whereCondition" />
     </select>
 
-
+    <select id="findPhase" parameterType="com.shiji.dao.dataobject.AssessDO"
+            resultMap="AssessResult">
+        select  employee_id as employee_id,max(phase) as phase  from assess GROUP BY employee_id HAVING employee_id
+         in
+        <foreach collection="list" item="employeeId" index="index" open="(" close=")" separator=",">
+            #{employeeId}
+        </foreach>
+    </select>
 </mapper>
