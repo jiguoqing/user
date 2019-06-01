@@ -15,6 +15,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -54,6 +55,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
   @Override
   public List<EmployeeVO> findByCondition(Map<String, Object> condition) {
+    Map<String, String> phase = new HashMap<>();
+    phase.put("1", "阶段一");
+    phase.put("2", "阶段二");
+    phase.put("3", "阶段三");
+    phase.put(null, "未考核");
     Integer fromRow =
         (Integer.parseInt(condition.get("currentPage").toString()) - 1) * Constans.pageSize;
     condition.put("fromRow", fromRow);
@@ -91,8 +97,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     Map<Integer, DepartmentVO> departmentVOMap = departmentService.findByIds(departmentIds);
     for (EmployeeVO employee : employeeVOS) {
       employee.setDepartment(departmentVOMap.get(employee.getDepartmentId()));
-      if(null !=mapPhase){
-        employee.setAssessPhase(mapPhase.get(employee.getId()));
+      if (null != mapPhase) {
+        employee.setAssessPhase(phase.get(mapPhase.get(employee.getId())));
       }
     }
     return employeeVOS;
