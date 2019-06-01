@@ -41,11 +41,21 @@
                     #{status}
                 </foreach>
             </if>
+            <if test="ids != null">
+                and id in
+                <foreach collection="ids" item="status"
+                         index="index" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
             <if test="name !=null">
                 and name like CONCAT('%',#{name},'%')
             </if>
+            <if test="englishName !=null">
+                and english_name like CONCAT('%',#{englishName},'%')
+            </if>
             <if test="location !=null">
-                and location like CONCAT('%',#{location},'%')
+                and location = #{location}
             </if>
             <if test="createdAtFrom != null">
                 and created_at
@@ -68,6 +78,16 @@
             <if test="description !=null">
                 and description like CONCAT('%',#{description},'%')
             </if>
+            <if test="status !=null">
+                and status = #{status}
+            </if>
+            <if test="code !=null">
+                and code = #{code}
+            </if>
+            <if test="departmentId !=null">
+                and department_id = #{departmentId}
+            </if>
+
         </where>
     </sql>
 
