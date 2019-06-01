@@ -62,4 +62,10 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     return result;
   }
+
+  @Override
+  public boolean isExist(DepartmentVO department) {
+    DepartmentDO departmentDO = departmentMapper.isExist(department);
+    return !(null == departmentDO);
+  }
 }

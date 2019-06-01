@@ -56,6 +56,17 @@
     <select id="findByName" parameterType="java.lang.String" resultMap="Department">
         select * from department where name LIKE CONCAT('%',#{name},'%')
     </select>
+
+    <select id="isExist" parameterType="com.shiji.dao.dataobject.DepartmentDO" resultMap="Department">
+        select * from department where name=#{name}
+        <if test="id != null">
+        <![CDATA[
+          and  id != #{id
+        ]]>}
+        </if>
+    </select>
+
+
     <delete id="deleteById" parameterType="java.lang.Integer">
         delete from department where id=#{id}
     </delete>

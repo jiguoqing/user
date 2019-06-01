@@ -19,4 +19,6 @@ public interface DepartmentService {
   List<DepartmentVO> findByName(String name);
 
   Map<Integer, DepartmentVO> findByIds(List<Integer> ids);
+
+  boolean isExist(DepartmentVO department);
 }

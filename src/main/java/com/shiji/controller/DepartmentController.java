@@ -32,8 +32,13 @@ public class DepartmentController {
   }
 
   @PostMapping("/department/save")
-  public void save(@RequestBody DepartmentVO department) {
-    departmentService.save(department);
+  public String save(@RequestBody DepartmentVO department) {
+    if(!departmentService.isExist(department)){
+      departmentService.save(department);
+      return "true";
+    } else {
+      return "你录入的部门已经存在";
+    }
   }
 
   @GetMapping("/department/findByName")

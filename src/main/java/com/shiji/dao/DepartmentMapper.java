@@ -20,4 +20,6 @@ public interface DepartmentMapper {
   List<DepartmentDO> findByName(String name);
 
   List<DepartmentDO> findByIds(List<Integer> ids);
+
+  DepartmentDO isExist(DepartmentVO department);
 }
