@@ -32,7 +32,7 @@
                 id = #{id}
             </if>
             <if test="assessPhase != null">
-                assess_phase = #{assessPhase}
+                and assess_phase = #{assessPhase}
             </if>
             <if test="statuses != null">
                 and status in

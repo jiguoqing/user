@@ -16,4 +16,6 @@ public interface AssessMapper {
   void delete(AssessDO assessDO);
 
   List<AssessDO> findPhase(List<Integer> employeeIds);
+
+  List<AssessDO> findByCondition(AssessDO assessDO);
 }

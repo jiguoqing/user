@@ -17,8 +17,11 @@
     </resultMap>
     <sql id="whereCondition">
         <where>
-            <if test="id != null">
-                id = #{id}
+            <if test="employeeId != null">
+               employee_id = #{employeeId}
+            </if>
+            <if test="phase != null">
+                and phase = #{phase}
             </if>
         </where>
     </sql>
@@ -53,20 +56,11 @@
         delete from assess where employee_id=#{employeeId} and  phase=#{phase}
     </delete>
 
-    <select id="findByCondition" parameterType="java.util.Map"
+    <select id="findByCondition" parameterType="com.shiji.dao.dataobject.AssessDO"
             resultMap="AssessResult">
         select * from assess
         <include refid="whereCondition" />
-        <choose>
-            <when test="order != null">
-                order by ${order}
-                ${orderType}
-            </when>
-            <otherwise>
                 order by id desc
-            </otherwise>
-        </choose>
-        limit #{fromRow},#{toRow}
     </select>
     <select id="countByCondition" parameterType="java.util.Map"
             resultType="java.lang.Integer">

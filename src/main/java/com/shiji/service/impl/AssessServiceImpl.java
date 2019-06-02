@@ -1,5 +1,6 @@
 package com.shiji.service.impl;
 
+import com.shiji.common.Constans;
 import com.shiji.common.ConvertUtil;
 import com.shiji.dao.AssessMapper;
 import com.shiji.dao.dataobject.AssessDO;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,5 +80,20 @@ public class AssessServiceImpl implements AssessService {
       map.put(assessDO.getEmployeeId(), assessDO.getPhase());
     }
     return map;
+  }
+
+  @Override
+  public List<AssessVO> find(Integer employeeId, String phase) {
+    AssessDO assessDO = new AssessDO();
+    assessDO.setEmployeeId(employeeId);
+    assessDO.setPhase(phase);
+    List<AssessDO> assessDOS = assessMapper.findByCondition(assessDO);
+    List<AssessVO> assessVOS = new ArrayList<>();
+    for (AssessDO assess : assessDOS) {
+      AssessVO assessVO = ConvertUtil.convertToVO(assess, AssessVO.class);
+      assessVO.setType(Constans.assessType.get(assessVO.getType()));
+      assessVOS.add(assessVO);
+    }
+    return assessVOS;
   }
 }
