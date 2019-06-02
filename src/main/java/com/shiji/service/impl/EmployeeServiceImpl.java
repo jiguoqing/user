@@ -62,6 +62,18 @@ public class EmployeeServiceImpl implements EmployeeService {
     if (null != condition.get("statuses")) {
       condition.put("statuses", Arrays.asList(condition.get("statuses").toString().split(",")));
     }
+    if (null != condition.get("phase")) {
+      if ("0".equals(condition.get("phase"))) {
+        List<Integer> employeeIds = assessService.findAllEmployeeIds();
+        condition.put("idsnotin", employeeIds);
+      } else {
+        List<Integer> employeeIds = assessService.findEmployIds(condition.get("phase").toString());
+        if (CollectionUtils.isEmpty(employeeIds)) {
+          return new ArrayList<EmployeeVO>();
+        }
+        condition.put("ids", employeeIds);
+      }
+    }
     List<EmployeeDO> employeeDOS = employeeMapper.findByCondition(condition);
     List<EmployeeVO> employeeVOS = new ArrayList<>();
     if (CollectionUtils.isEmpty(employeeDOS)) {
@@ -81,6 +93,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     Map<Integer, DepartmentVO> departmentVOMap = departmentService.findByIds(departmentIds);
     for (EmployeeVO employee : employeeVOS) {
       employee.setDepartment(departmentVOMap.get(employee.getDepartmentId()));
+      employee.setStatus(Constans.statuses.get(employee.getStatus()));
       if (null != mapPhase) {
         employee.setAssessPhase(Constans.phase.get(mapPhase.get(employee.getId())));
       } else {
@@ -94,6 +107,18 @@ public class EmployeeServiceImpl implements EmployeeService {
   public Integer countByCondition(Map<String, Object> condition) {
     if (null != condition.get("statuses")) {
       condition.put("statuses", Arrays.asList(condition.get("statuses").toString().split(",")));
+    }
+    if (null != condition.get("phase")) {
+      if ("0".equals(condition.get("phase"))) {
+        List<Integer> employeeIds = assessService.findAllEmployeeIds();
+        condition.put("idsnotin", employeeIds);
+      } else {
+        List<Integer> employeeIds = assessService.findEmployIds(condition.get("phase").toString());
+        if (CollectionUtils.isEmpty(employeeIds)) {
+          return 0;
+        }
+        condition.put("ids", employeeIds);
+      }
     }
     return employeeMapper.countByCondition(condition);
   }

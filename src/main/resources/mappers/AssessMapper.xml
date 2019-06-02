@@ -68,6 +68,14 @@
         <include refid="whereCondition" />
     </select>
 
+    <select id="findByEmployeeIdByPhase" parameterType="java.lang.String"
+            resultMap="AssessResult">
+        select  employee_id as employee_id,max(phase) as phase  from assess GROUP BY employee_id HAVING phase = #{phase}
+    </select>
+
+    <select id="findAllEmployeeIds" resultType="java.lang.Integer">
+        select distinct(employee_id) from assess
+    </select>
     <select id="findPhase" parameterType="com.shiji.dao.dataobject.AssessDO"
             resultMap="AssessResult">
         select  employee_id as employee_id,max(phase) as phase  from assess GROUP BY employee_id HAVING employee_id

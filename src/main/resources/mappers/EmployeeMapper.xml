@@ -43,7 +43,15 @@
             </if>
             <if test="ids != null">
                 and id in
-                <foreach collection="ids" item="status"
+                <foreach collection="ids" item="id"
+                         index="index" open="(" close=")" separator=",">
+                    #{id}
+                </foreach>
+            </if>
+
+            <if test="idsnotin != null">
+                and id not in
+                <foreach collection="idsnotin" item="id"
                          index="index" open="(" close=")" separator=",">
                     #{id}
                 </foreach>

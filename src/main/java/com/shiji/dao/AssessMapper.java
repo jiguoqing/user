@@ -3,7 +3,6 @@ package com.shiji.dao;
 import com.shiji.dao.dataobject.AssessDO;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by 计国清 on 2019/05/12.
@@ -18,4 +17,8 @@ public interface AssessMapper {
   List<AssessDO> findPhase(List<Integer> employeeIds);
 
   List<AssessDO> findByCondition(AssessDO assessDO);
+
+  List<AssessDO> findByEmployeeIdByPhase(String phase);
+
+  List<Integer> findAllEmployeeIds();
 }

@@ -7,6 +7,7 @@ public class Constans {
   public static final int pageSize = 10;
   public static final Map<String, String> assessType = new HashMap<>();
   public static final Map<String, String> phase = new HashMap<>();
+  public static final Map<String, String> statuses = new HashMap<>();
 
   static {
     initContantsMap();
@@ -20,5 +21,9 @@ public class Constans {
     phase.put("2", "阶段二");
     phase.put("3", "阶段三");
     phase.put(null, "未考核");
+
+    statuses.put("TRIAL", "试用期");
+    statuses.put("ON_DUTY", "在职");
+    statuses.put("LEAVE", "离职");
   }
 }

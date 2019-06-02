@@ -96,4 +96,22 @@ public class AssessServiceImpl implements AssessService {
     }
     return assessVOS;
   }
+
+  @Override
+  public List<Integer> findEmployIds(String phase) {
+    List<AssessDO> assessDOS = assessMapper.findByEmployeeIdByPhase(phase);
+    List<Integer> employeeIds = new ArrayList<>();
+    if (CollectionUtils.isEmpty(assessDOS)) {
+      return employeeIds;
+    }
+    for (AssessDO assessDO : assessDOS) {
+      employeeIds.add(assessDO.getEmployeeId());
+    }
+    return employeeIds;
+  }
+
+  @Override
+  public List<Integer> findAllEmployeeIds() {
+    return assessMapper.findAllEmployeeIds();
+  }
 }
