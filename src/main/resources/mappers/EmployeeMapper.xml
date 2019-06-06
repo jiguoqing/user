@@ -65,6 +65,11 @@
             <if test="location !=null">
                 and location = #{location}
             </if>
+            <if test="onboardAt != null">
+                <![CDATA[
+				and onboard_at < #{onboardAt}
+				]]>
+            </if>
             <if test="createdAtFrom != null">
                 and created_at
                 >= #{createdAtFrom}

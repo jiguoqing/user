@@ -15,6 +15,8 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -61,6 +63,27 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     if (null != condition.get("statuses")) {
       condition.put("statuses", Arrays.asList(condition.get("statuses").toString().split(",")));
+    }
+    if (null != condition.get("month")) {
+      Integer month = Integer.parseInt(condition.get("month").toString());
+
+      //如果找一阶段考核的或者没有指定考核阶段的,则入职时间到选择月份满两个月,
+      //如果找二阶段考核的,则入职时间到选择月份满两个月,
+      //如果找三阶段考核的,则入职时间到选择月份满六个月,
+      if (null != condition.get("phase")) {
+        Integer phase = Integer.parseInt(condition.get("phase").toString());
+        month = month - (phase+1) * 2;
+      } else {
+        month = month - 2;
+      }
+      Calendar cale = null;
+      cale = Calendar.getInstance();
+      int year = cale.get(Calendar.YEAR);
+      int currentMonth = cale.get(Calendar.MONTH);
+
+      cale.set(year,  month, 1);
+      Date onBoardDate = cale.getTime();
+      condition.put("onboardAt", onBoardDate);
     }
     if (null != condition.get("phase")) {
       if ("0".equals(condition.get("phase"))) {
