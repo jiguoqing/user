@@ -23,7 +23,7 @@ public class AssessController {
   @Autowired
   private AssessService assessService;
 
-  @PostMapping("/assess/save")
+  @PostMapping("assess/save")
   public void save(@RequestBody Map<String, Object> assess) {
     assessService.save(assess);
   }
