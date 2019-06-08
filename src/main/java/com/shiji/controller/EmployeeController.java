@@ -3,6 +3,7 @@ package com.shiji.controller;
 import static org.springframework.http.HttpHeaders.CONTENT_DISPOSITION;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 
+import com.shiji.common.Constans;
 import com.shiji.common.ExcelUtil;
 import com.shiji.service.EmployeeService;
 import com.shiji.service.model.EmployeeVO;
@@ -88,20 +89,8 @@ public class EmployeeController {
     }
   }
 
-  //  private Map<String, Object> getFilterMap(HttpServletRequest request) {
-  //    Map<String, Object> filterMap = new HashMap<>();
-  //    String entityName = request.getParameter("EntityName");
-  //    String email = request.getParameter("Email");
-  //    if (!StringUtils.isEmpty(entityName)) {
-  //      filterMap.put("EntityName", entityName);
-  //    }
-  //    if (!StringUtils.isEmpty(email)) {
-  //      filterMap.put("Email", email);
-  //    }
-  //    return filterMap;
-  //  }
-
   private List<List<String>> convertToContent(List<EmployeeVO> employees) {
+
     List<List<String>> contentList = new ArrayList<>();
     for (EmployeeVO employee : employees) {
       List<String> row = new ArrayList<>();
@@ -113,7 +102,9 @@ public class EmployeeController {
       row.add(employee.getLevel());
       row.add(employee.getEmail());
       row.add(employee.getPhone());
-      row.add(String.valueOf(employee.getOnboardAt()));
+      row.add(employee.getOnboardAt() != null ?
+          Constans.formatter.format(employee.getOnboardAt()) :
+          "未填写");
       row.add(employee.getStatus());
       if (null != employee.getDepartment()) {
         row.add(employee.getDepartment().getName());

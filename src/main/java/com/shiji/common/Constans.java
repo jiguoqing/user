@@ -1,5 +1,6 @@
 package com.shiji.common;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ public class Constans {
   public static final Map<String, String> assessType = new HashMap<>();
   public static final Map<String, String> phase = new HashMap<>();
   public static final Map<String, String> statuses = new HashMap<>();
+  public static final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
   static {
     initContantsMap();
