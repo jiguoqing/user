@@ -194,7 +194,11 @@
                 order by id desc
             </otherwise>
         </choose>
-        limit #{fromRow},#{toRow}
+
+        <if test="fromRow !=null">
+            limit #{fromRow},#{toRow}
+        </if>
+
     </select>
     <select id="countByCondition" parameterType="java.util.Map"
             resultType="java.lang.Integer">

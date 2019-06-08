@@ -1,8 +1,14 @@
 package com.shiji.controller;
 
+import static org.springframework.http.HttpHeaders.CONTENT_DISPOSITION;
+import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
+
+import com.shiji.common.ExcelUtil;
 import com.shiji.service.EmployeeService;
 import com.shiji.service.model.EmployeeVO;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,8 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by jiguoqing on 2019/05/12.
@@ -48,5 +60,89 @@ public class EmployeeController {
   @PostMapping("/employee/deleteById")
   public void deleteById(@RequestParam Integer id) {
     employeeService.deleteById(id);
+  }
+
+  @GetMapping("/employee/assess/exportExcel")
+  public void exportExcel(HttpServletRequest request, HttpServletResponse response,
+      @RequestParam String phase, @RequestParam String month) {
+
+    Map<String, Object> map = new HashMap<>();
+    if (!StringUtils.isEmpty(phase) && !"undefined".equals(phase)) {
+      map.put("phase", phase);
+    }
+    if (!StringUtils.isEmpty(month) && !"undefined".equals(month)) {
+      map.put("month", month);
+    }
+    List<EmployeeVO> list = employeeService.findByCondition(map);
+    String fileName = "assess";
+    String attachment = "attachment;filename=" + fileName + ".xls";
+    HSSFWorkbook wb = ExcelUtil.getFWorkbook(fileName, getHeadList(), convertToContent(list));
+
+    response.setContentType(CONTENT_TYPE);
+    response.setHeader(CONTENT_DISPOSITION, attachment);
+    try (OutputStream os = response.getOutputStream()) {
+      wb.write(os);
+      os.flush();
+    } catch (IOException exception) {
+      throw new IllegalStateException(exception);
+    }
+  }
+
+  //  private Map<String, Object> getFilterMap(HttpServletRequest request) {
+  //    Map<String, Object> filterMap = new HashMap<>();
+  //    String entityName = request.getParameter("EntityName");
+  //    String email = request.getParameter("Email");
+  //    if (!StringUtils.isEmpty(entityName)) {
+  //      filterMap.put("EntityName", entityName);
+  //    }
+  //    if (!StringUtils.isEmpty(email)) {
+  //      filterMap.put("Email", email);
+  //    }
+  //    return filterMap;
+  //  }
+
+  private List<List<String>> convertToContent(List<EmployeeVO> employees) {
+    List<List<String>> contentList = new ArrayList<>();
+    for (EmployeeVO employee : employees) {
+      List<String> row = new ArrayList<>();
+      row.add(employee.getName());
+      row.add(employee.getEnglishName());
+      row.add(employee.getGender());
+      row.add(employee.getCode());
+      row.add(employee.getJobTitle());
+      row.add(employee.getLevel());
+      row.add(employee.getEmail());
+      row.add(employee.getPhone());
+      row.add(String.valueOf(employee.getOnboardAt()));
+      row.add(employee.getStatus());
+      if (null != employee.getDepartment()) {
+        row.add(employee.getDepartment().getName());
+      }
+      row.add(employee.getAssessPhase());
+      row.add(employee.getLocation());
+      row.add(employee.getDescription());
+
+      contentList.add(row);
+    }
+    return contentList;
+  }
+
+  private List<String> getHeadList() {
+    List<String> headList = new ArrayList<>();
+    headList.add("姓名");
+    headList.add("英文名");
+    headList.add("性别");
+    headList.add("员工号");
+    headList.add("职位");
+    headList.add("层级");
+    headList.add("email");
+    headList.add("手机");
+    headList.add("入职日期");
+    headList.add("状态");
+    headList.add("部门");
+    headList.add("考核阶段");
+    headList.add("办公地");
+    headList.add("描述");
+    return headList;
   }
 }

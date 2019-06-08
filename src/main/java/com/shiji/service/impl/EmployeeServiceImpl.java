@@ -56,10 +56,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
   @Override
   public List<EmployeeVO> findByCondition(Map<String, Object> condition) {
-    Integer fromRow =
-        (Integer.parseInt(condition.get("currentPage").toString()) - 1) * Constans.pageSize;
-    condition.put("fromRow", fromRow);
-    condition.put("toRow", fromRow + Constans.pageSize);
+    if (null != condition.get("currentPage")) {
+      Integer fromRow =
+          (Integer.parseInt(condition.get("currentPage").toString()) - 1) * Constans.pageSize;
+      condition.put("fromRow", fromRow);
+      condition.put("toRow", fromRow + Constans.pageSize);
+    }
 
     if (null != condition.get("statuses")) {
       condition.put("statuses", Arrays.asList(condition.get("statuses").toString().split(",")));
@@ -72,7 +74,7 @@ public class EmployeeServiceImpl implements EmployeeService {
       //如果找三阶段考核的,则入职时间到选择月份满六个月,
       if (null != condition.get("phase")) {
         Integer phase = Integer.parseInt(condition.get("phase").toString());
-        month = month - (phase+1) * 2;
+        month = month - (phase + 1) * 2;
       } else {
         month = month - 2;
       }
@@ -81,7 +83,7 @@ public class EmployeeServiceImpl implements EmployeeService {
       int year = cale.get(Calendar.YEAR);
       int currentMonth = cale.get(Calendar.MONTH);
 
-      cale.set(year,  month, 1);
+      cale.set(year, month, 1);
       Date onBoardDate = cale.getTime();
       condition.put("onboardAt", onBoardDate);
     }
