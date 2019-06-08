@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
  * Created by jiguoqing on 2019/05/12.
  */
 @RestController
-@RequestMapping(value = "/employee", produces = "application/json; charset=UTF-8")
+@RequestMapping(value = "/api", produces = "application/json; charset=UTF-8")
 public class EmployeeController {
 
   @Autowired
