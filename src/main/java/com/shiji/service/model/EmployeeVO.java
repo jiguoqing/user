@@ -18,10 +18,37 @@ public class EmployeeVO extends BaseVO {
   private String email;
   private String phone;
   private Date onboardAt;
+  private Date phaseOneAt;
+  private Date phaseTwoAt;
+  private Date phaseThreeAt;
   private Date leavedAt;
   private String level;
   private String status;
   private String assessPhase;
+
+  public Date getPhaseOneAt() {
+    return phaseOneAt;
+  }
+
+  public void setPhaseOneAt(Date phaseOneAt) {
+    this.phaseOneAt = phaseOneAt;
+  }
+
+  public Date getPhaseTwoAt() {
+    return phaseTwoAt;
+  }
+
+  public void setPhaseTwoAt(Date phaseTwoAt) {
+    this.phaseTwoAt = phaseTwoAt;
+  }
+
+  public Date getPhaseThreeAt() {
+    return phaseThreeAt;
+  }
+
+  public void setPhaseThreeAt(Date phaseThreeAt) {
+    this.phaseThreeAt = phaseThreeAt;
+  }
 
   public String getAssessPhase() {
     return assessPhase;

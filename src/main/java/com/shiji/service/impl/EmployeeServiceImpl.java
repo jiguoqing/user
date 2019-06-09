@@ -69,14 +69,14 @@ public class EmployeeServiceImpl implements EmployeeService {
     if (null != condition.get("month")) {
       Integer month = Integer.parseInt(condition.get("month").toString());
 
-      //如果找一阶段考核的或者没有指定考核阶段的,则入职时间到选择月份满两个月,
-      //如果找二阶段考核的,则入职时间到选择月份满两个月,
-      //如果找三阶段考核的,则入职时间到选择月份满六个月,
+      //如果找一阶段考核的或者没有指定考核阶段的,则入职时间到选择月份满1个月,
+      //如果找二阶段考核的,则入职时间到选择月份满3个月,
+      //如果找三阶段考核的,则入职时间到选择月份满5个月,
       if (null != condition.get("phase")) {
         Integer phase = Integer.parseInt(condition.get("phase").toString());
-        month = month - (phase + 1) * 2;
+        month = month - (phase + 1) * 2 + 1;
       } else {
-        month = month - 2;
+        month = month - 1;
       }
       Calendar cale = null;
       cale = Calendar.getInstance();
@@ -119,6 +119,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     for (EmployeeVO employee : employeeVOS) {
       employee.setDepartment(departmentVOMap.get(employee.getDepartmentId()));
       employee.setStatus(Constans.statuses.get(employee.getStatus()));
+      employee.setPhaseOneAt(getPhaseDate(1, employee.getOnboardAt()));
+      employee.setPhaseTwoAt(getPhaseDate(3, employee.getOnboardAt()));
+      employee.setPhaseThreeAt(getPhaseDate(5, employee.getOnboardAt()));
       if (null != mapPhase) {
         employee.setAssessPhase(Constans.phase.get(mapPhase.get(employee.getId())));
       } else {
@@ -126,6 +129,16 @@ public class EmployeeServiceImpl implements EmployeeService {
       }
     }
     return employeeVOS;
+  }
+
+  private Date getPhaseDate(Integer addMonth, Date date) {
+    Calendar calendar = Calendar.getInstance();
+
+    calendar.setTime(date);
+
+    calendar.add(Calendar.MONTH, addMonth);
+
+    return calendar.getTime();
   }
 
   @Override
