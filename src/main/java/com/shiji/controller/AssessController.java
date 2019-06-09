@@ -17,7 +17,8 @@ import java.util.Map;
  * Created by jiguoqing on 2019/05/12.
  */
 @RestController
-@RequestMapping(value = "/api", produces = "application/json; charset=UTF-8")
+//@RequestMapping(value = "/api", produces = "application/json; charset=UTF-8")
+@RequestMapping(value = "", produces = "application/json; charset=UTF-8")
 public class AssessController {
 
   @Autowired
