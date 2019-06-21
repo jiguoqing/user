@@ -7,7 +7,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
 //public class SpringBootMybatisApplication extends SpringBootServletInitializer {
-  public class SpringBootMybatisApplication  {
+    public class SpringBootMybatisApplication  {
 
   public static void main(String[] args) {
     SpringApplication.run(SpringBootMybatisApplication.class, args);

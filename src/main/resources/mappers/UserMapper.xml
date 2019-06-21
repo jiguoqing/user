@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiji.dao.UserMapper" >
+
+    <resultMap id="User" type="com.shiji.dao.dataobject.UserDO">
+        <result property="id" column="id" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
+        <result property="name" column="name" />
+        <result property="description" column="description" />
+        <result property="password" column="password" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.shiji.dao.dataobject.UserDO">
+        INSERT INTO user(
+        created_at,
+        updated_at,
+        name,
+        password,
+        description
+        )
+        VALUES(
+        now(),
+        now(),
+        #{name},
+        #{password},
+        #{description}
+        )
+        <selectKey resultType="int" keyProperty="id">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
+
+    <update id="update" parameterType="com.shiji.dao.dataobject.UserDO">
+        UPDATE user
+        SET
+        updated_at = now(),
+        name = #{name},
+        password = #{password},
+        description = #{description}
+        WHERE id = #{id};
+    </update>
+
+
+    <select id="find" parameterType="java.lang.String" resultMap="User">
+        select * from user where name =#{name} and password=#{password}
+    </select>
+
+    <select id="isExist" parameterType="com.shiji.dao.dataobject.UserDO" resultMap="User">
+        select * from user where name=#{name}
+        <if test="id != null">
+        <![CDATA[
+          and  id != #{id
+        ]]>}
+        </if>
+    </select>
+
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from user where id=#{id}
+    </delete>
+</mapper>
