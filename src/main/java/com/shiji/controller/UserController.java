@@ -25,12 +25,12 @@ public class UserController {
     return userService.find(userVO) != null;
   }
 
-  @GetMapping("/user/validate")
-  public Boolean validate(@RequestParam String user, @RequestParam String password) {
-
-    UserVO userVO = new UserVO();
-    userVO.setName(user);
-    userVO.setPassword(password);
-    return  userService.find(userVO) != null;
-  }
+//  @GetMapping("/user/validate")
+//  public Boolean validate(@RequestParam String user, @RequestParam String password) {
+//
+//    UserVO userVO = new UserVO();
+//    userVO.setName(user);
+//    userVO.setPassword(password);
+//    return  userService.find(userVO) != null;
+//  }
 }
