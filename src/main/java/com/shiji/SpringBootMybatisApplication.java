@@ -6,15 +6,14 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-//public class SpringBootMybatisApplication extends SpringBootServletInitializer {
-    public class SpringBootMybatisApplication  {
+public class SpringBootMybatisApplication extends SpringBootServletInitializer {
 
   public static void main(String[] args) {
     SpringApplication.run(SpringBootMybatisApplication.class, args);
   }
 
-//  @Override
-//  protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-//    return builder.sources(SpringBootMybatisApplication.class);
-//  }
+  @Override
+  protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+    return builder.sources(SpringBootMybatisApplication.class);
+  }
 }

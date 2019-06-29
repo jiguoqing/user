@@ -42,7 +42,7 @@
     </update>
 
 
-    <select id="find" parameterType="java.lang.String" resultMap="User">
+    <select id="find" parameterType="com.shiji.dao.dataobject.UserDO" resultMap="User">
         select * from user where name =#{name} and password=#{password}
     </select>
 
