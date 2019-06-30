@@ -28,17 +28,17 @@ public class LoginInterceptor implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
       throws IOException {
-//    System.out.println("执行到了preHandle方法");
+    System.out.println("执行到了preHandle方法");
 //    System.out.println(handler);
     Cookie[] cookies = request.getCookies();
     if (!authorized(cookies)) {
       //      response.sendRedirect(request.getContextPath() + "login");//拦截后跳转的方法
-//      System.out.println("已成功拦截并转发跳转");
+      System.out.println("已成功拦截并转发跳转");
       response.setStatus(403);
       return false;
     }
 
-//    System.out.println("合格不需要拦截，放行");
+    System.out.println("合格不需要拦截，放行");
     return true;
   }
 

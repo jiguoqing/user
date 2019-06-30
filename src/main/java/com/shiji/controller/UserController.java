@@ -3,11 +3,9 @@ package com.shiji.controller;
 import com.shiji.service.UserService;
 import com.shiji.service.model.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -22,15 +20,11 @@ public class UserController {
 
   @PostMapping("/user/validate")
   public Boolean validate(@RequestBody UserVO userVO) {
-    return userService.find(userVO) != null;
+    System.out
+        .println("user validate userVO:" + userVO.getName() + ";password:" + userVO.getPassword());
+    UserVO user = userService.find(userVO);
+    System.out.println("validate:"+(user != null));
+    return user != null;
   }
 
-//  @GetMapping("/user/validate")
-//  public Boolean validate(@RequestParam String user, @RequestParam String password) {
-//
-//    UserVO userVO = new UserVO();
-//    userVO.setName(user);
-//    userVO.setPassword(password);
-//    return  userService.find(userVO) != null;
-//  }
 }
