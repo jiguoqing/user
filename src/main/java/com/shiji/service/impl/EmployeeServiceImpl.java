@@ -54,14 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     employeeMapper.deleteById(id);
   }
 
-  @Override
-  public List<EmployeeVO> findByCondition(Map<String, Object> condition) {
-    if (null != condition.get("currentPage")) {
-      Integer fromRow =
-          (Integer.parseInt(condition.get("currentPage").toString()) - 1) * Constans.pageSize;
-      condition.put("fromRow", fromRow);
-      condition.put("toRow", fromRow + Constans.pageSize);
-    }
+  private Map<String, Object> buildCondition(Map<String, Object> condition) {
 
     if (null != condition.get("statuses")) {
       condition.put("statuses", Arrays.asList(condition.get("statuses").toString().split(",")));
@@ -94,10 +87,25 @@ public class EmployeeServiceImpl implements EmployeeService {
       } else {
         List<Integer> employeeIds = assessService.findEmployIds(condition.get("phase").toString());
         if (CollectionUtils.isEmpty(employeeIds)) {
-          return new ArrayList<EmployeeVO>();
+          return null;
         }
         condition.put("ids", employeeIds);
       }
+    }
+    return condition;
+  }
+
+  @Override
+  public List<EmployeeVO> findByCondition(Map<String, Object> condition) {
+    if (null != condition.get("currentPage")) {
+      Integer fromRow =
+          (Integer.parseInt(condition.get("currentPage").toString()) - 1) * Constans.pageSize;
+      condition.put("fromRow", fromRow);
+      condition.put("toRow", fromRow + Constans.pageSize);
+    }
+    buildCondition(condition);
+    if (null == condition) {
+      return new ArrayList<EmployeeVO>();
     }
     List<EmployeeDO> employeeDOS = employeeMapper.findByCondition(condition);
     List<EmployeeVO> employeeVOS = new ArrayList<>();
@@ -143,20 +151,27 @@ public class EmployeeServiceImpl implements EmployeeService {
 
   @Override
   public Integer countByCondition(Map<String, Object> condition) {
-    if (null != condition.get("statuses")) {
-      condition.put("statuses", Arrays.asList(condition.get("statuses").toString().split(",")));
-    }
-    if (null != condition.get("phase")) {
-      if ("0".equals(condition.get("phase"))) {
-        List<Integer> employeeIds = assessService.findAllEmployeeIds();
-        condition.put("idsnotin", employeeIds);
-      } else {
-        List<Integer> employeeIds = assessService.findEmployIds(condition.get("phase").toString());
-        if (CollectionUtils.isEmpty(employeeIds)) {
-          return 0;
-        }
-        condition.put("ids", employeeIds);
-      }
+    //    if (null != condition.get("statuses")) {
+    //      condition.put("statuses", Arrays.asList(condition.get("statuses").toString().split(",
+    // ")));
+    //    }
+    //    if (null != condition.get("phase")) {
+    //      if ("0".equals(condition.get("phase"))) {
+    //        List<Integer> employeeIds = assessService.findAllEmployeeIds();
+    //        condition.put("idsnotin", employeeIds);
+    //      } else {
+    //        List<Integer> employeeIds = assessService.findEmployIds(condition.get("phase")
+    // .toString());
+    //        if (CollectionUtils.isEmpty(employeeIds)) {
+    //          return 0;
+    //        }
+    //        condition.put("ids", employeeIds);
+    //      }
+    //    }
+
+    buildCondition(condition);
+    if (null == condition) {
+      return 0;
     }
     return employeeMapper.countByCondition(condition);
   }
