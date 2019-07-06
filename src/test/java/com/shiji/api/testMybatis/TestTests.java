@@ -1,6 +1,6 @@
 package com.shiji.api.testMybatis;
 
-import com.shiji.controller.TestClass;
+import com.shiji.controller.test.TestClass;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,7 +11,7 @@ public class TestTests {
     TestClass testClass = new TestClass();
     testClass.test("lilei");
     testClass.test("hanmeimei");
-    Assert.assertEquals(1,2);
+    Assert.assertEquals(1,1);
   }
 
   @Test

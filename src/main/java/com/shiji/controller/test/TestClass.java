@@ -1,15 +1,13 @@
-package com.shiji.controller;
+package com.shiji.controller.test;
 
-public class TestClass2 {
+public class TestClass {
 
     public void test(String name) {
         if ("lilei".equals(name)) {
             System.out.println("lilei");
         } else if ("hanmeimei".equals(name)) {
             System.out.println("hanmeimei");
-        }  else if ("hanmeimei1".equals(name)) {
-            System.out.println("hanmeimei");
-        }else {
+        } else {
             System.out.println("who?");
         }
     }
