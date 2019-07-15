@@ -1,5 +1,6 @@
 package com.shiji.controller;
 
+import com.shiji.common.Constans;
 import com.shiji.service.AssessService;
 import com.shiji.service.model.AssessVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,6 @@ public class AssessController {
   public List<AssessVO> findByEmployeeIdAndPhase(@RequestParam Integer employeeId,
       @RequestParam String phase) {
     List<AssessVO> assessVOS = assessService.find(employeeId, phase);
-    return assessVOS;
+    return Constans.phaseAssess.get(phase);
   }
 }

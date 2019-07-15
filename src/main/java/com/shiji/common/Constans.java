@@ -1,7 +1,12 @@
 package com.shiji.common;
 
+import com.shiji.service.model.AssessVO;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Constans {
@@ -63,19 +68,28 @@ public class Constans {
   public static final String PHASE_THREE_TUTOR_SCORING = "PointThree_Tutor_Scoring";
   public static final String PHASE_THREE_SUMMARY = "PointThree_Summary";
 
-  public static final Map<String, String> assessType = new HashMap<>();
-  public static final Map<String, String> assessPointOne = new HashMap<>();
-  public static final Map<String, String> assessPointTwo = new HashMap<>();
-  public static final Map<String, String> assessPointThree = new HashMap<>();
-  public static final Map<String, Float> assessPointPercentOne = new HashMap<>();
-  public static final Map<String, Float> assessPointPercentTwo = new HashMap<>();
-  public static final Map<String, Float> assessPointPercentThree = new HashMap<>();
-  public static final Map<String, String> assessStandardOne = new HashMap<>();
-  public static final Map<String, String> assessStandardTwo = new HashMap<>();
-  public static final Map<String, String> assessStandardThree = new HashMap<>();
-  public static final Map<String, String> assessContentOne = new HashMap<>();
-  public static final Map<String, String> assessContentTwo = new HashMap<>();
-  public static final Map<String, String> assessContentThree = new HashMap<>();
+  public static final Map<String, String> assessType = new LinkedHashMap<>();
+  public static final Map<String, String> assessPointOne = new LinkedHashMap<>();
+  public static final Map<String, String> assessPointTwo = new LinkedHashMap<>();
+  public static final Map<String, String> assessPointThree = new LinkedHashMap<>();
+  public static final Map<String, Float> assessPointPercentOne = new LinkedHashMap<>();
+  public static final Map<String, Float> assessPointPercentTwo = new LinkedHashMap<>();
+  public static final Map<String, Float> assessPointPercentThree = new LinkedHashMap<>();
+  public static final Map<String, String> assessStandardOne = new LinkedHashMap<>();
+  public static final Map<String, String> assessStandardTwo = new LinkedHashMap<>();
+  public static final Map<String, String> assessStandardThree = new LinkedHashMap<>();
+  public static final Map<String, String> assessContentOne = new LinkedHashMap<>();
+  public static final Map<String, String> assessContentTwo = new LinkedHashMap<>();
+  public static final Map<String, String> assessContentThree = new LinkedHashMap<>();
+  //
+  //  public static final List<String> phaseOneKey = new ArrayList<>();
+  //  public static final List<String> phaseTwoKey = new ArrayList<>();
+  //  public static final List<String> phaseThreeKey = new ArrayList<>();
+
+  public static final List<AssessVO> assessListOne = new ArrayList<>();
+  public static final List<AssessVO> assessListTwo = new ArrayList<>();
+  public static final List<AssessVO> assessListThree = new ArrayList<>();
+  public static final Map<String, List<AssessVO>> phaseAssess = new HashMap<>();
 
   public static final Map<String, String> phase = new HashMap<>();
   public static final Map<String, String> statuses = new HashMap<>();
@@ -83,6 +97,51 @@ public class Constans {
 
   static {
     initContantsMap();
+    initAssessListOne();
+    initAssessListTwo();
+    initAssessListThree();
+  }
+
+  private static void initAssessListOne() {
+    for (String key : assessContentOne.keySet()) {
+      AssessVO assessVO = new AssessVO();
+      assessVO.setContent(assessContentOne.get(key));
+      assessVO.setPercent(assessPointPercentOne.get(key));
+      assessVO.setPhase("1");
+      assessVO.setPoint(assessPointOne.get(key));
+      assessVO.setStandard(assessStandardOne.get(key));
+      assessVO.setType(key);
+      assessListOne.add(assessVO);
+    }
+  }
+
+  private static void initAssessListTwo() {
+    for (String key : assessContentTwo.keySet()) {
+      AssessVO assessVO = new AssessVO();
+      assessVO.setContent(assessContentTwo.get(key));
+      assessVO.setPercent(assessPointPercentTwo.get(key));
+      assessVO.setPhase("1");
+      assessVO.setPoint(assessPointTwo.get(key));
+      assessVO.setStandard(assessStandardTwo.get(key));
+      assessVO.setType(key);
+      assessListTwo.add(assessVO);
+    }
+  }
+
+  private static void initAssessListThree() {
+    for (String key : assessContentThree.keySet()) {
+      AssessVO assessVO = new AssessVO();
+      assessVO.setContent(assessContentThree.get(key));
+      assessVO.setPercent(assessPointPercentThree.get(key));
+      assessVO.setPhase("1");
+      assessVO.setPoint(assessPointThree.get(key));
+      assessVO.setStandard(assessStandardThree.get(key));
+      assessVO.setType(key);
+      assessListThree.add(assessVO);
+    }
+    phaseAssess.put("1", assessListOne);
+    phaseAssess.put("2", assessListTwo);
+    phaseAssess.put("3", assessListThree);
   }
 
   private static void initContantsMap() {
@@ -166,8 +225,8 @@ public class Constans {
     assessPointTwo.put(PHASE_TWO_JOB_RELATED_PRODUCT_KNOWLEDGE_QUALITY, "岗位相关产品知识");
     assessPointTwo.put(PHASE_TWO_JOB_RELATED_PRODUCT_KNOWLEDGE_SUMMARY, "岗位相关产品知识");
     assessPointTwo.put(PHASE_TWO_WORKFLOW, "项目流程");
-    assessPointTwo.put(PHASE_TWO_TUTOR_SCORING, "由成长导师根据员工在试用期第二阶段期间的日常学习和工作情况作出评分");
-    assessPointTwo.put(PHASE_TWO_SUMMARY, "Shadow Summary Report和试用期第二阶段学习，工作总结完成情况");
+    assessPointTwo.put(PHASE_TWO_TUTOR_SCORING, "");
+    assessPointTwo.put(PHASE_TWO_SUMMARY, "");
 
     assessPointThree.put(PHASE_THREE_WORK_ATTITUDE, "认真和积极的学习、工作态度");
     assessPointThree.put(PHASE_THREE_LEARN_ATTITUDE, "学习能力");
