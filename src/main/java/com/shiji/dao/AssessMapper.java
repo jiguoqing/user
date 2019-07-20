@@ -21,4 +21,6 @@ public interface AssessMapper {
   List<AssessDO> findByEmployeeIdByPhase(String phase);
 
   List<Integer> findAllEmployeeIds();
+
+  void update(AssessDO assessDO);
 }

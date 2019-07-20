@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by jiguoqing on 2019/05/12.
@@ -35,38 +34,47 @@ public class AssessServiceImpl implements AssessService {
     return ConvertUtil.convertToVOList(assessDOS, AssessVO.class);
   }
 
+  //  public void save(Map<String, Object> assessMap) {
+  //    //delete old assess data
+  //    Map<String, Integer> employeeMap = (Map<String, Integer>) assessMap.get("employeeId");
+  //    Integer employeeId = Integer.parseInt(employeeMap.get("employeeId").toString());
+  //    String phase = assessMap.get("phase").toString();
+  //    AssessDO assessDO = new AssessDO();
+  //    assessDO.setEmployeeId(employeeId);
+  //    assessDO.setPhase(phase);
+  //    assessMapper.delete(assessDO);
+  //    //insert new assess data
+  //    Set<String> sets = assessMap.keySet();
+  //
+  //    for (String set : sets) {
+  //      if ("employeeId".equals(set)) {
+  //        continue;
+  //      }
+  //      if ("phase".equals(set)) {
+  //        continue;
+  //      }
+  //      AssessDO assess = new AssessDO();
+  //      assess.setEmployeeId(employeeId);
+  //      assess.setPhase(phase);
+  //      assess.setType(set);
+  //      Map<String, Object> map = (Map) assessMap.get(set);
+  //      assess.setPercent((Float) map.get("percent"));
+  //      assess.setScore((Integer) map.get("score"));
+  //      assessMapper.insert(assess);
+  //      //
+  //
+  //    }
+  //    employeeService.updataAssessPhaseById(phase, employeeId);
+  //  }
+
   @Override
-  public void save(Map<String, Object> assessMap) {
-    //delete old assess data
-    Map<String, Integer> employeeMap = (Map<String, Integer>) assessMap.get("employeeId");
-    Integer employeeId = Integer.parseInt(employeeMap.get("employeeId").toString());
-    String phase = assessMap.get("phase").toString();
-    AssessDO assessDO = new AssessDO();
-    assessDO.setEmployeeId(employeeId);
-    assessDO.setPhase(phase);
-    assessMapper.delete(assessDO);
-    //insert new assess data
-    Set<String> sets = assessMap.keySet();
-
-    for (String set : sets) {
-      if ("employeeId".equals(set)) {
-        continue;
-      }
-      if ("phase".equals(set)) {
-        continue;
-      }
-      AssessDO assess = new AssessDO();
-      assess.setEmployeeId(employeeId);
-      assess.setPhase(phase);
-      assess.setType(set);
-      Map<String, Integer> map = (Map) assessMap.get(set);
-      assess.setPercent(map.get("percent"));
-      assess.setScore(map.get("score"));
-      assessMapper.insert(assess);
-      //
-
+  public void save(AssessVO assessVO) {
+    AssessDO assessDO = ConvertUtil.convertToDO(assessVO, AssessDO.class);
+    if (null == assessVO.getId()) {
+      assessMapper.insert(assessDO);
+    } else {
+      assessMapper.update(assessDO);
     }
-    employeeService.updataAssessPhaseById(phase, employeeId);
   }
 
   @Override
@@ -95,6 +103,20 @@ public class AssessServiceImpl implements AssessService {
       assessVOS.add(assessVO);
     }
     return assessVOS;
+  }
+
+  @Override
+  public Map<String, AssessVO> findMap(Integer employeeId, String phase) {
+    AssessDO assessDO = new AssessDO();
+    assessDO.setEmployeeId(employeeId);
+    assessDO.setPhase(phase);
+    List<AssessDO> assessDOS = assessMapper.findByCondition(assessDO);
+    Map<String, AssessVO> map = new HashMap<>();
+    for (AssessDO assess : assessDOS) {
+      AssessVO assessVO = ConvertUtil.convertToVO(assess, AssessVO.class);
+      map.put(assessVO.getType(), assessVO);
+    }
+    return map;
   }
 
   @Override

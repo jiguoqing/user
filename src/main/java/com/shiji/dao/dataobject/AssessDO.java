@@ -9,7 +9,7 @@ public class AssessDO extends BaseDO {
   private String phase;
   private Integer employeeId;
   private Integer score;
-  private Integer percent;
+  private Float percent;
   private String type;
   private String description;
 
@@ -37,11 +37,11 @@ public class AssessDO extends BaseDO {
     this.score = score;
   }
 
-  public Integer getPercent() {
+  public Float getPercent() {
     return percent;
   }
 
-  public void setPercent(Integer percent) {
+  public void setPercent(Float percent) {
     this.percent = percent;
   }
 

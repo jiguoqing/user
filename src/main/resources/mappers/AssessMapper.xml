@@ -84,4 +84,13 @@
             #{employeeId}
         </foreach>
     </select>
+
+    <update id="update" parameterType="com.shiji.dao.dataobject.AssessDO">
+        UPDATE assess
+        SET
+        updated_at = now(),
+        score = #{score},
+        description = #{description}
+        WHERE id = #{id};
+    </update>
 </mapper>

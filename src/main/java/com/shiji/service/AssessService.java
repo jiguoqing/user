@@ -12,11 +12,19 @@ public interface AssessService {
 
   List<AssessVO> findByEmployeeId(Integer employeeId);
 
-  void save(Map<String, Object> assess);
+  void save(AssessVO assessVO);
 
   Map<Integer, String> findPhase(List<Integer> employeeIds);
 
   List<AssessVO> find(Integer employeeId, String phase);
+
+  /**
+   *
+   * @param employeeId
+   * @param phase
+   * @return key: type
+   */
+  Map<String,AssessVO> findMap(Integer employeeId, String phase);
 
   List<Integer> findEmployIds(String phase);
 
