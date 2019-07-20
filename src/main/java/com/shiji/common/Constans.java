@@ -52,8 +52,9 @@ public class Constans {
   public static final String PHASE_TWO_WORKFLOW = "PointTwo_Workflow";
   public static final String PHASE_TWO_TUTOR_SCORING = "PointTwo_Tutor_Scoring";
   public static final String PHASE_TWO_SUMMARY = "PointTwo_Summary";
+  public static final String PHASE_ONE_RESULT = "PointOne_Result";
   public static final String PHASE_TWO_RESULT = "PointTwo_Result";
-
+  public static final String PHASE_THREE_RESULT = "PointThree_Result";
 
   //Phase three key
   public static final String PHASE_THREE_WORK_ATTITUDE = "PointThree_Working_Attitude";
@@ -170,6 +171,7 @@ public class Constans {
     assessContentOne.put(PHASE_ONE_WORKFLOW, "工作流程");
     assessContentOne.put(PHASE_ONE_TUTOR_SCORING, "团队管理评定");
     assessContentOne.put(PHASE_ONE_SUMMARY, "阶段总结");
+    assessContentOne.put(PHASE_ONE_RESULT, "评核结果");
 
     assessContentTwo.put(PHASE_TWO_WORK_ATTITUDE_SUMMARY, "工作态度");
     assessContentTwo.put(PHASE_TWO_WORK_ATTITUDE_LEAD, "工作态度");
@@ -200,6 +202,7 @@ public class Constans {
     assessContentThree.put(PHASE_THREE_WORKFLOW, "工作流程");
     assessContentThree.put(PHASE_THREE_TUTOR_SCORING, "团队管理评定");
     assessContentThree.put(PHASE_THREE_SUMMARY, "阶段总结");
+    assessContentThree.put(PHASE_THREE_RESULT, "评核结果");
 
     //评估要点
     assessPointOne.put(PHASE_ONE_WORK_ATTITUDE, "认真和积极的学习、工作态度");
@@ -210,8 +213,9 @@ public class Constans {
     assessPointOne.put(PHASE_ONE_JOB_RELATED_PRODUCT_KNOWLEDGE_STUDY, "岗位相关产品知识");
     assessPointOne.put(PHASE_ONE_JOB_RELATED_PRODUCT_KNOWLEDGE_COMPLETE, "岗位相关产品知识");
     assessPointOne.put(PHASE_ONE_WORKFLOW, "日常工作及项目流程");
-    assessPointOne.put(PHASE_ONE_TUTOR_SCORING, "由成长导师根据员工在试用期第一阶段期间的日常学习和工作情况作出评分");
-    assessPointOne.put(PHASE_ONE_SUMMARY, "试用期第一阶段学习，工作总结完成情况");
+    assessPointOne.put(PHASE_ONE_TUTOR_SCORING, "");
+    assessPointOne.put(PHASE_ONE_SUMMARY, "");
+    assessPointOne.put(PHASE_ONE_RESULT, "总评分");
 
     assessPointTwo.put(PHASE_TWO_WORK_ATTITUDE_SUMMARY, "认真和积极的学习、工作态度");
     assessPointTwo.put(PHASE_TWO_WORK_ATTITUDE_LEAD, "认真和积极的学习、工作态度");
@@ -240,8 +244,9 @@ public class Constans {
     assessPointThree.put(PHASE_THREE_JOB_RELATED_PRODUCT_KNOWLEDGE_USER, "岗位相关产品知识");
     assessPointThree.put(PHASE_THREE_JOB_RELATED_PRODUCT_KNOWLEDGE_SHARE, "岗位相关产品知识");
     assessPointThree.put(PHASE_THREE_WORKFLOW, "项目流程");
-    assessPointThree.put(PHASE_THREE_TUTOR_SCORING, "由部门经理根据员工在试用期期间的日常学习和工作情况作出评分");
-    assessPointThree.put(PHASE_THREE_SUMMARY, "试用期期间的学习，工作总结完成情况（转正报告）");
+    assessPointThree.put(PHASE_THREE_TUTOR_SCORING, "");
+    assessPointThree.put(PHASE_THREE_SUMMARY, "");
+    assessPointThree.put(PHASE_THREE_RESULT, "总评分");
 
     //评估标准
     assessStandardOne.put(PHASE_ONE_WORK_ATTITUDE, "本阶段评估要点：按时按量保质的发送每日学习报告，阶段性总结报告");
