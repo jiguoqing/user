@@ -49,9 +49,11 @@ public class Constans {
       "PointTwo_Job_Related_Product_Knowledge_Quality";
   public static final String PHASE_TWO_JOB_RELATED_PRODUCT_KNOWLEDGE_SUMMARY =
       "PointTwo_Job_Related_Product_Knowledge_Summary";
-  public static final String PHASE_TWO_WORKFLOW = "PointOne_Workflow";
-  public static final String PHASE_TWO_TUTOR_SCORING = "PointOne_Tutor_Scoring";
-  public static final String PHASE_TWO_SUMMARY = "PointOne_Summary";
+  public static final String PHASE_TWO_WORKFLOW = "PointTwo_Workflow";
+  public static final String PHASE_TWO_TUTOR_SCORING = "PointTwo_Tutor_Scoring";
+  public static final String PHASE_TWO_SUMMARY = "PointTwo_Summary";
+  public static final String PHASE_TWO_RESULT = "PointTwo_Result";
+
 
   //Phase three key
   public static final String PHASE_THREE_WORK_ATTITUDE = "PointThree_Working_Attitude";
@@ -120,7 +122,7 @@ public class Constans {
       AssessVO assessVO = new AssessVO();
       assessVO.setContent(assessContentTwo.get(key));
       assessVO.setPercent(assessPointPercentTwo.get(key));
-      assessVO.setPhase("1");
+      assessVO.setPhase("2");
       assessVO.setPoint(assessPointTwo.get(key));
       assessVO.setStandard(assessStandardTwo.get(key));
       assessVO.setType(key);
@@ -133,7 +135,7 @@ public class Constans {
       AssessVO assessVO = new AssessVO();
       assessVO.setContent(assessContentThree.get(key));
       assessVO.setPercent(assessPointPercentThree.get(key));
-      assessVO.setPhase("1");
+      assessVO.setPhase("3");
       assessVO.setPoint(assessPointThree.get(key));
       assessVO.setStandard(assessStandardThree.get(key));
       assessVO.setType(key);
@@ -186,6 +188,7 @@ public class Constans {
     assessContentTwo.put(PHASE_TWO_WORKFLOW, "工作流程");
     assessContentTwo.put(PHASE_TWO_TUTOR_SCORING, "团队管理评定");
     assessContentTwo.put(PHASE_TWO_SUMMARY, "阶段总结");
+    assessContentTwo.put(PHASE_TWO_RESULT, "评核结果");
 
     assessContentThree.put(PHASE_THREE_WORK_ATTITUDE, "工作态度");
     assessContentThree.put(PHASE_THREE_LEARN_ATTITUDE, "胜任能力");
@@ -227,6 +230,7 @@ public class Constans {
     assessPointTwo.put(PHASE_TWO_WORKFLOW, "项目流程");
     assessPointTwo.put(PHASE_TWO_TUTOR_SCORING, "");
     assessPointTwo.put(PHASE_TWO_SUMMARY, "");
+    assessPointTwo.put(PHASE_TWO_RESULT, "总评分");
 
     assessPointThree.put(PHASE_THREE_WORK_ATTITUDE, "认真和积极的学习、工作态度");
     assessPointThree.put(PHASE_THREE_LEARN_ATTITUDE, "学习能力");
