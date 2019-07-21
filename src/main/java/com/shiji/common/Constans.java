@@ -92,60 +92,17 @@ public class Constans {
   public static final List<AssessVO> assessListOne = new ArrayList<>();
   public static final List<AssessVO> assessListTwo = new ArrayList<>();
   public static final List<AssessVO> assessListThree = new ArrayList<>();
-  public static final Map<String, List<AssessVO>> phaseAssess = new HashMap<>();
-
   public static final Map<String, String> phase = new HashMap<>();
   public static final Map<String, String> statuses = new HashMap<>();
   public static final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
   static {
     initContantsMap();
-    initAssessListOne();
-    initAssessListTwo();
-    initAssessListThree();
+//    initAssessListOne();
+//    initAssessListTwo();
+//    initAssessListThree();
   }
 
-  private static void initAssessListOne() {
-    for (String key : assessContentOne.keySet()) {
-      AssessVO assessVO = new AssessVO();
-      assessVO.setContent(assessContentOne.get(key));
-      assessVO.setPercent(assessPointPercentOne.get(key));
-      assessVO.setPhase("1");
-      assessVO.setPoint(assessPointOne.get(key));
-      assessVO.setStandard(assessStandardOne.get(key));
-      assessVO.setType(key);
-      assessListOne.add(assessVO);
-    }
-  }
-
-  private static void initAssessListTwo() {
-    for (String key : assessContentTwo.keySet()) {
-      AssessVO assessVO = new AssessVO();
-      assessVO.setContent(assessContentTwo.get(key));
-      assessVO.setPercent(assessPointPercentTwo.get(key));
-      assessVO.setPhase("2");
-      assessVO.setPoint(assessPointTwo.get(key));
-      assessVO.setStandard(assessStandardTwo.get(key));
-      assessVO.setType(key);
-      assessListTwo.add(assessVO);
-    }
-  }
-
-  private static void initAssessListThree() {
-    for (String key : assessContentThree.keySet()) {
-      AssessVO assessVO = new AssessVO();
-      assessVO.setContent(assessContentThree.get(key));
-      assessVO.setPercent(assessPointPercentThree.get(key));
-      assessVO.setPhase("3");
-      assessVO.setPoint(assessPointThree.get(key));
-      assessVO.setStandard(assessStandardThree.get(key));
-      assessVO.setType(key);
-      assessListThree.add(assessVO);
-    }
-    phaseAssess.put("1", assessListOne);
-    phaseAssess.put("2", assessListTwo);
-    phaseAssess.put("3", assessListThree);
-  }
 
   private static void initContantsMap() {
     assessType.put("performance", "业绩");
