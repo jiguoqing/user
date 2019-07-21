@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -25,7 +26,10 @@ public class AssessPersonController {
   }
 
   @GetMapping("/assessperson/find")
-  public AssessPersonVO find(@RequestBody AssessPersonVO assessPersonVO) {
+  public AssessPersonVO find(@RequestParam Integer employeeId, @RequestParam String phase) {
+    AssessPersonVO assessPersonVO = new AssessPersonVO();
+    assessPersonVO.setEmployeeId(employeeId);
+    assessPersonVO.setPhase(phase);
     return assessPersonService.find(assessPersonVO);
   }
 }
