@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shiji.dao.AssessPersonMapper">
+
+    <resultMap id="AssessPerson" type="com.shiji.dao.dataobject.AssessPersonDO">
+        <result property="id" column="id"/>
+        <result property="createdAt" column="created_at"/>
+        <result property="updatedAt" column="updated_at"/>
+        <result property="name" column="name"/>
+        <result property="phase" column="phase"/>
+        <result property="employeeId" column="employee_id"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.shiji.dao.dataobject.AssessPersonDO">
+        INSERT INTO assess_person(
+        created_at,
+        updated_at,
+        name,
+        phase,
+        employee_id
+        )
+        VALUES(
+        now(),
+        now(),
+        #{name},
+        #{phase},
+        #{employeeId}
+        )
+        <selectKey resultType="int" keyProperty="id">
+            select last_insert_id() as id
+        </selectKey>
+    </insert>
+
+    <update id="update" parameterType="com.shiji.dao.dataobject.AssessPersonDO">
+        UPDATE assess_person
+        SET
+        updated_at = now(),
+        name = #{name},
+        phase = #{phase},
+        employee_id = #{employeeId}
+        WHERE id = #{id};
+    </update>
+
+
+    <select id="find" parameterType="com.shiji.dao.dataobject.AssessPersonDO"
+            resultMap="AssessPerson">
+        select * from assess_person where employee_id =#{employeeId} and phase=#{phase}
+    </select>
+
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        delete from assess_person where id=#{id}
+    </delete>
+</mapper>
